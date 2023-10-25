@@ -12,16 +12,17 @@
         );
 
     echo '<nav class="menu color">
-             <ul class="row m-0">
-                <br>';
+             <ul class="row">
+                <br>
+                <div class="col"><img style="height: 50px" src="images/iMM.png"></div>';
 
     foreach($mymenu as $pageId => $pageParameters) {
-        echo '<li class="col m-0 list-unstyled">';
+        echo '<li class="col list-unstyled">';
         if($pageId == $currentPageId ) {
-            echo '<a id="currentpage" class="text-decoration-none" href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a>';
+            echo '<a id="currentpage" class="text-decoration-none text-white" href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a>';
         
         } else {
-            echo '<a class="text-decoration-none" href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a>';
+            echo '<a class="text-decoration-none text-white" href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a>';
         }
         echo '</li>';
     }

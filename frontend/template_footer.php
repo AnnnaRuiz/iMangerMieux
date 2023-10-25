@@ -1,4 +1,4 @@
-<div class="row color">
+<div class="row color text-white">
     <div class="col-12 text-center">
         <ul>
             <div class="row-6">
