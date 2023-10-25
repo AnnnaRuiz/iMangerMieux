@@ -1,30 +1,26 @@
 <?php
-
-$host = 'localhost';
-$username = 'root';
-$password = 'root';
-$database = 'dbpoweramc';
-$options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' );
-$dbh=null;
+require_once('config.php');
 
 try {
-    $dbh = new PDO("mysql:host=$host;dbname=$database", $username, $password, $options);
-    $dbh->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    require_once('init_pdo.php');
 
-    $sqlFile = 'sql/create_db.sql';
-    $sql = file_get_contents($sqlFile);
+    // Chemin du fichier SQL
+    $sqlFile = 'sql/dbpoweramc.sql';
 
-    $stmt = $dbh->exec($sql);
+    // Lire le contenu du fichier SQL
+    $sqlContent = file_get_contents($sqlFile);
 
-    if ($stmt !== false) {
-        echo "Le fichier $sqlFile a été exécuté avec succès dans la base de données.";
-    }
-    else {
-        echo "Une erreur s'est produite lors de l'exécution du fichier SQL.";
-    }
+    // Exécuter les requêtes SQL
+    $pdo->exec($sqlContent);
+
+    echo "Le fichier $sqlFile a été exécuté avec succès.";
+
+} catch (PDOException $e) {
+    echo "Erreur : " . $e->getMessage();
 }
-catch (PDOException $e) {
-    echo "Erreur de connexion à la base de données : " . $e->getMessage();
-}
-$dbh=null;
+
+// Fermer la connexion
+$pdo = null;
 ?>
+
+
