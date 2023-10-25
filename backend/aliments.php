@@ -20,8 +20,12 @@ switch($_SERVER["REQUEST_METHOD"]){
 
 function getAllFood(){
     global $pdo;
-    $request = $pdo->prepare("SELECT * FROM ALIMENTS");
-    $request->execute();
-    $result = $request->fetchAll(PDO::FETCH_OBJ);
-    return $result;
+    if ($pdo !== null) {
+        $request = $pdo->prepare("SELECT * FROM ALIMENTS");
+        $request->execute();
+        $result = $request->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    } else {
+        return null; // Gestion de l'erreur de connexion à la base de données
+    }
 }
