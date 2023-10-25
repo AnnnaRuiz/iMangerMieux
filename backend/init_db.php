@@ -1,6 +1,4 @@
 <?php
-require_once('config.php');
-
 try {
     require_once('init_pdo.php');
 

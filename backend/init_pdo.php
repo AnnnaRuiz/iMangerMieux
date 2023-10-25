@@ -1,4 +1,5 @@
 <?php
+require_once('config.php');
 $connectionString = "mysql:host=" . _MYSQL_HOST;
 
 if (defined('_MYSQL_PORT'))
