@@ -1,5 +1,5 @@
 <?php
-require_once('init_db.php');
+require_once('functionsAPI.php');
 
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
@@ -10,13 +10,13 @@ switch($_SERVER["REQUEST_METHOD"]){
 
     case 'POST':
         $name = $_POST['ALIMENT'];
-        $category = $_POST['CATEGORIE'];
+        $categorie = $_POST['CATEGORIE'];
         $calories = $_POST['CALORIES'];
         $lipides = $_POST['LIPIDES'];
         $glucides = $_POST['GLUCIDES'];
         $proteines = $_POST['PROTEINES'];
         $sucre = $_POST['SUCRE'];
-        $item = createFoodItem($name, $category, $calories, $lipides, $glucides, $proteines, $sucre);
+        $item = createFoodItem($name, $categorie, $calories, $lipides, $glucides, $proteines, $sucre);
 
         if ($item != null) {
             // Utilisateur créé avec succès
@@ -38,29 +38,3 @@ switch($_SERVER["REQUEST_METHOD"]){
 }
         
 
-function getAllFood(){
-    global $pdo;
-    if ($pdo !== null) {
-        $request = $pdo->prepare("SELECT * FROM ALIMENTS");
-        $request->execute();
-        $result = $request->fetchAll(PDO::FETCH_OBJ);
-        return $result;
-    } else {
-        return null; // Gestion de l'erreur de connexion à la base de données
-    }
-}
-
-function createFoodItem($name, $category, $calories, $lipides, $glucides, $proteines, $sucre) {
-    global $pdo;
-    $request = $pdo->prepare('INSERT INTO `ALIMENTS` (`ID`, `ALIMENT`, `CATEGORIE`, `CALORIES`, `LIPIDES`, `GLUCIDES`, `PROTEINES`, `SUCRE`) VALUES (NULL, :name, :category, :calories, :lipides, :glucides, :proteines, :sucre)');
-    $request->bindParam(':name', $name, PDO::PARAM_STR);
-    $request->bindParam(':category', $category, PDO::PARAM_STR);
-    $request->bindParam(':calories', $calories, PDO::PARAM_STR);
-    $request->bindParam(':lipides', $lipides, PDO::PARAM_STR);
-    $request->bindParam(':glucides', $glucides, PDO::PARAM_STR);
-    $request->bindParam(':proteines', $proteines, PDO::PARAM_STR);
-    $request->bindParam(':sucre', $sucre, PDO::PARAM_STR);
-    $request->execute();
-
-    return ['ID' => $pdo->lastInsertId()];
-}

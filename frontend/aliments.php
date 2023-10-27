@@ -4,7 +4,6 @@
     <table id="food" class="display table center">
         <thead>
             <tr>
-                <th scope="col">Id</th>
                 <th scope="col">Nom</th>
                 <th scope="col">Catégorie</th>
                 <th scope="col">Calories /100g(ml)</th>
@@ -32,12 +31,12 @@
             <label for="inputCategorie" class="col-sm-3 col-form-label text-right">Catégorie*</label>
             <div class="col-sm-3">
                 <select id="inputCategorie" name="Catégories" required>
-                    <option value="fruitsleg">Fruits et Légumes</option>
-                    <option value="feculents">Féculents</option>
-                    <option value="proteines">Protéines animales</option>
-                    <option value="lait">Produits laitiers</option>
-                    <option value="snacks">Snacks</option>
-                    <option value="boissons">Boissons</option>
+                    <option value="Fruits et Légumes">Fruits et Légumes</option>
+                    <option value="Féculents">Féculents</option>
+                    <option value="Protéines animales">Protéines animales</option>
+                    <option value="Produits laitier">Produits laitiers</option>
+                    <option value="Snacks">Snacks</option>
+                    <option value="Boissons">Boissons</option>
                 </select>
             </div>
         </div>

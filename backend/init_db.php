@@ -1,3 +1,4 @@
+<!-- On n'utilise ce code nul part -->
 <?php
 try {
     require_once('init_pdo.php');
