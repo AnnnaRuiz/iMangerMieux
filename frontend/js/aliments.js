@@ -41,7 +41,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8888/iMangerMieux/backend/aliments.php',
+            url: apiURL + '/aliments.php',
             data: {ALIMENT: name, CATEGORIE: categorie, CALORIES: kcal, LIPIDES: lipides, GLUCIDES: glucides, PROTEINES: proteines, SUCRE: sucre},
             success: function(response) {
                 let newFoodItem = `

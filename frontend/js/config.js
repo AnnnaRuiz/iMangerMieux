@@ -1,8 +1,3 @@
-let apiURL; 
+let apiURL = 'http://localhost/iMangerMieux/backend'
 
-if (window.location.pathname.includes('wamp64/www')) {
-    apiURL = 'http://localhost/iMangerMieux/backend';
-} else {
-    apiURL = 'http://localhost:8888/iMangerMieux/backend';
-}
 
