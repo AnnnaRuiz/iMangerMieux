@@ -1,4 +1,3 @@
-<!-- On n'utilise ce code nul part -->
 <?php
 try {
     require_once('init_pdo.php');
@@ -12,7 +11,7 @@ try {
     // Exécuter les requêtes SQL
     $pdo->exec($sqlContent);
 
-    // echo "Le fichier $sqlFile a été exécuté avec succès.";
+    echo "Le fichier $sqlFile a été exécuté avec succès.";
 
 } catch (PDOException $e) {
     echo "Erreur : " . $e->getMessage();
