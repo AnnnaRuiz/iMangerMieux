@@ -41,7 +41,7 @@ $(document).ready(function() {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8888/iMangerMieux/backend/aliments.php',
+            url: apiURL + '/aliments.php',
             data: {ALIMENT: name, CATEGORIE: categorie, CALORIES: kcal, LIPIDES: lipides, GLUCIDES: glucides, PROTEINES: proteines, SUCRE: sucre},
             success: function(response) {
                 let newFoodItem = `
@@ -88,7 +88,7 @@ function deleteRow(button) {
 
     $.ajax({
         type: 'DELETE',
-        url: 'http://localhost:8888/iMangerMieux/backend/aliments.php',
+        url: apiURL + '/aliments.php',
         data: {ALIMENT: nom},
         success: function(response) {
             let table = $('#food').DataTable();
@@ -153,7 +153,7 @@ function deleteRow(button) {
         // Faire une requête pour mettre à jour les informations dans le backend
         $.ajax({
             type: 'PUT',
-            url: 'http://localhost:8888/iMangerMieux/backend/aliments.php',
+            url: apiURL + '/aliments.php',
             contentType: 'application/x-www-form-urlencoded',
             data: {ALIMENT: nom, CATEGORIE: categorie, CALORIES: calories, LIPIDES: lipides, GLUCIDES: glucides, PROTEINES: proteines, SUCRE: sucre},
             success: function(response) {
