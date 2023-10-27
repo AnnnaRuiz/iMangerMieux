@@ -115,7 +115,14 @@ function deleteRow(button) {
 
     
         // Remplacer le contenu des cellules par des champs de saisie pré-remplis
-        row.find('td:eq(1)').html(`<input type="text" value="${categorie}" />`);
+        row.find('td:eq(1)').html(`<select id="inputCategorie" name="Catégories" required>
+                                        <option value="Fruits et Légumes">Fruits et Légumes</option>
+                                        <option value="Féculents">Féculents</option>
+                                        <option value="Protéines animales">Protéines animales</option>
+                                        <option value="Produits laitier">Produits laitiers</option>
+                                        <option value="Snacks">Snacks</option>
+                                        <option value="Boissons">Boissons</option>
+                                    </select>`);
         row.find('td:eq(2)').html(`<input type="number" step="0.1" value="${calories}" />`);
         row.find('td:eq(3)').html(`<input type="number" step="0.1" value="${lipides}" />`);
         row.find('td:eq(4)').html(`<input type="number" step="0.1" value="${glucides}" />`);
