@@ -107,11 +107,11 @@ function deleteRow(button) {
     
         // Récupérer les valeurs actuelles des cellules
         let categorie = row.find('td:eq(1)').text();
-        let calories = row.find('td:eq(2)').text();
-        let lipides = row.find('td:eq(3)').text();
-        let glucides = row.find('td:eq(4)').text();
-        let proteines = row.find('td:eq(5)').text();
-        let sucre = row.find('td:eq(6)').text();
+        let calories = row.find('td:eq(2)').val();
+        let lipides = row.find('td:eq(3)').val();
+        let glucides = row.find('td:eq(4)').val();
+        let proteines = row.find('td:eq(5)').val();
+        let sucre = row.find('td:eq(6)').val();
 
     
         // Remplacer le contenu des cellules par des champs de saisie pré-remplis
@@ -123,6 +123,7 @@ function deleteRow(button) {
                                         <option value="Snacks">Snacks</option>
                                         <option value="Boissons">Boissons</option>
                                     </select>`);
+
         row.find('td:eq(2)').html(`<input type="number" step="0.1" value="${calories}" />`);
         row.find('td:eq(3)').html(`<input type="number" step="0.1" value="${lipides}" />`);
         row.find('td:eq(4)').html(`<input type="number" step="0.1" value="${glucides}" />`);
@@ -148,12 +149,12 @@ function deleteRow(button) {
 
     
         row.find('td:eq(1)').text(categorie);
-        row.find('td:eq(2)').text(calories);
-        row.find('td:eq(3)').text(lipides);
-        row.find('td:eq(4)').text(glucides);
-        row.find('td:eq(5)').text(proteines);
-        row.find('td:eq(6)').text(sucre);
-        row.find('td:eq(7)').html(`<button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button><button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>`);
+        row.find('td:eq(2)').number(calories);
+        row.find('td:eq(3)').number(lipides);
+        row.find('td:eq(4)').number(glucides);
+        row.find('td:eq(5)').number(proteines);
+        row.find('td:eq(6)').number(sucre);
+        row.find('td:eq(7)').replaceWith(`<button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button><button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>`);
             
     
     

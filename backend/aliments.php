@@ -48,7 +48,6 @@ switch($_SERVER["REQUEST_METHOD"]){
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit( json_encode(["message" => "Parametres invalides pour la suppression de l'aliment"]));
         }
-        break;
 
         case 'PUT':
             parse_str(file_get_contents("php://input"), $putData);
@@ -76,13 +75,10 @@ switch($_SERVER["REQUEST_METHOD"]){
                 http_response_code(400); // Code d'erreur 400 Bad Request
                 exit(json_encode(["message" => "Parametres invalides pour la mise a jour de l'aliment"]));
             }
-            break;
 
     default: 
         http_response_code(501);
         exit(json_encode(["message" => "Not implemented"]));
-
-
 
 }
         
