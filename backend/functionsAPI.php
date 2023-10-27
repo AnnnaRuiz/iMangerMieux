@@ -25,5 +25,30 @@ function createFoodItem($name, $categorie, $calories, $lipides, $glucides, $prot
     $request->bindParam(':sucre', $sucre, PDO::PARAM_STR);
     $request->execute();
 
-    return ['ALIMENT' => $pdo->lastInsertId()];
+    return ['ALIMENT' => $name];
+}
+
+function deleteFoodItem($nom) {
+    global $pdo;
+    $request = $pdo->prepare('DELETE FROM `ALIMENTS` WHERE `ALIMENT`= :nom');
+    $request->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $request->execute();
+
+    return $request->rowCount() > 0; // Renvoie true si au moins une ligne a été supprimée, sinon false
+}
+function updateFoodItem($nom, $categorie, $calories, $lipides, $glucides, $proteines, $sucre) {
+    global $pdo;
+    
+    $request = $pdo->prepare('UPDATE `ALIMENTS` SET `CALORIES` = :calories, `CATEGORIE` = :categorie, `LIPIDES` = :lipides, `GLUCIDES` = :glucides, `PROTEINES` = :proteines, `SUCRE` = :sucre WHERE `ALIMENTS`.`ALIMENT` = :nom'); 
+    $request->bindParam(':nom', $nom, PDO::PARAM_STR);
+    $request->bindParam(':categorie', $categorie, PDO::PARAM_STR);
+    $request->bindParam(':calories', $calories, PDO::PARAM_STR);
+    $request->bindParam(':lipides', $lipides, PDO::PARAM_STR);
+    $request->bindParam(':glucides', $glucides, PDO::PARAM_STR);
+    $request->bindParam(':proteines', $proteines, PDO::PARAM_STR);
+    $request->bindParam(':sucre', $sucre, PDO::PARAM_STR);
+    $request->execute();
+
+    return $request->rowCount() > 0 ? ["CATEGORIE" => $categorie, "CALORIES" => $calories, "LIPIDES" => $lipides, "GLUCIDES" => $glucides, "PROTEINES" => $proteines, "SUCRE" => $sucre] : null; // Renvoie les données mises à jour ou null si aucune ligne mise à jour
+
 }
