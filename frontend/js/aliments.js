@@ -2,7 +2,7 @@
 $(document).ready(function() {
     let table = $('#food').DataTable({
         ajax: {
-            url: $URL,
+            url: 'http://localhost:8888/iMangerMieux/backend/aliments.php',
             type: 'GET',
             dataSrc: ''
         },

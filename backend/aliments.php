@@ -3,9 +3,6 @@ require_once('init_db.php');
 
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
-
-        parse_str(file_get_contents("php://input"),$get_data);
-        
         $result = getAllFood();
         header('Content-type: application/json');
         http_response_code(200);

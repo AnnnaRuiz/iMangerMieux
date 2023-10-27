@@ -2,9 +2,9 @@
 <html>
 
 <?php 
+    require_once('config.php');
     require_once('template_header.php'); 
     require_once("template_menu.php");
-    require_once('config.php')
 ?>
 
 <body>
