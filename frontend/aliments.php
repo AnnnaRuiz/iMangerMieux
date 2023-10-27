@@ -43,31 +43,31 @@
         <div class="form-group row">
             <label for="inputCalories" class="col-sm-3 col-form-label text-right">Calories /100g(ml) (kcal)*</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputCalories" step="0.01" required>
+                <input type="number" class="form-control" id="inputCalories" step="0.1" min='0' required>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputLip" class="col-sm-3 col-form-label text-right">Lipides /100g(ml)*</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputLip" step="0.01" required>
+                <input type="number" class="form-control" id="inputLip" step="0.1" min='0' max='100' required>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputGlu" class="col-sm-3 col-form-label text-right">Glucides /100g(ml)*</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputGlu" step="0.01" required>
+                <input type="number" class="form-control" id="inputGlu" step="0.1" min='0'  max='100' required>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputProt" class="col-sm-3 col-form-label text-right">Protéines /100g(ml)*</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputProt" step="0.01" required>
+                <input type="number" class="form-control" id="inputProt" step="0.1" min='0' max='100' required>
             </div>
         </div>
         <div class="form-group row">
             <label for="inputSucre" class="col-sm-3 col-form-label text-right">Quantité de sucre /100g(ml)*</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputSucre" step="0.01" required>
+                <input type="number" class="form-control" id="inputSucre" step="0.1" min='0' max='100' required>
             </div>
         </div>
         
