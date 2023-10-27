@@ -9,7 +9,8 @@
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="js/config.js"></script>
     <script src="js/aliments.js"></script>
-
+    
     <title>iMM</title>
 </head>

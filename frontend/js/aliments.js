@@ -1,11 +1,8 @@
-
-// import apiURL from './config.js';
-
 $(document).ready(function() {
     
     let table = $('#food').DataTable({
         ajax: {
-            url: 'http://localhost:8888/iMangerMieux/backend/aliments.php',
+            url: apiURL + '/aliments.php',
             type: 'GET',
             dataSrc: '',
             error: function(xhr, error, thrown) {
