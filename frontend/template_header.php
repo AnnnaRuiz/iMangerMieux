@@ -11,6 +11,7 @@
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="js/config.js"></script>
     <script src="js/aliments.js"></script>
+    <script src="js/users.js"></script>
     
     <title>iMM</title>
 </head>

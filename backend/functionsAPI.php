@@ -56,11 +56,26 @@ function updateFoodItem($nom, $categorie, $calories, $lipides, $glucides, $prote
 function get_user($email, $pwd){
     global $pdo;
     if ($pdo !== null) {
-        $request = $pdo->prepare("SELECT * FROM USERS");
+        $request = $pdo->prepare("SELECT * FROM `USERS` WHERE MAIL=:email AND MDP=:pwd");
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_OBJ);
         return $result;
     } else {
         return null; // Gestion de l'erreur de connexion à la base de données
     }
+}
+function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite){
+    global $pdo;
+    $request = $pdo->prepare('INSERT INTO `users` (`NOM`, `MAIL`, `MDP`, `SEXE`, `AGE`, `POIDS`, `TAILLE`, `ACTIVITE`) VALUES (:name, :mail, :pwd, :sexe, :age, :poids, :taille, :activite);');
+    $request->bindParam(':name', $name, PDO::PARAM_STR);
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+    $request->bindParam(':sexe', $sexe, PDO::PARAM_STR);
+    $request->bindParam(':age', $age, PDO::PARAM_STR);
+    $request->bindParam(':poids', $poids, PDO::PARAM_STR);
+    $request->bindParam(':taille', $taille, PDO::PARAM_STR);
+    $request->bindParam(':activite', $activite, PDO::PARAM_STR);
+    $request->execute();
+
+    return ['mail' => $mail];
 }

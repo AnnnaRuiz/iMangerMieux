@@ -11,7 +11,7 @@
                     <label for="pwd">Mot de passe</label>
                     <input type="password" class="form-control" id="pwd" name="pwd" placeholder="Votre mot de passe">
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Se Connecter</button>
+                <button type="submit" class="btn btn-primary btn-block" onclick="loginUser(email, pwd)">Se Connecter</button>
             </form>
         </div>
     </div>

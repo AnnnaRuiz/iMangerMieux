@@ -483,6 +483,9 @@ CREATE TABLE IF NOT EXISTS `users` (
   PRIMARY KEY (`MAIL`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
+INSERT INTO `users` (`NOM`, `MAIL`, `MDP`, `SEXE`, `AGE`, `POIDS`, `TAILLE`, `ACTIVITE`) VALUES
+('Riri', 'riri@gmail.com', 'fifi', 'M', 20, 70, 180, 'Modéré');
+
 --
 -- Contraintes pour les tables déchargées
 --
