@@ -19,14 +19,14 @@ switch($_SERVER["REQUEST_METHOD"]){
         $item = createFoodItem($name, $categorie, $calories, $lipides, $glucides, $proteines, $sucre);
 
         if ($item != null) {
-            // Utilisateur créé avec succès
+            // Aliment créé avec succès
             http_response_code(201); // Code 201 created 
             header('Content-Type: application/json');
             exit(json_encode($item));
         } else {
-            // Erreur lors de la création de l'utilisateur
+            // Erreur lors de la création de l'aliment
             http_response_code(500); // Code d'erreur 500 Internal Server Error
-            exit(json_encode(["message" => "Erreur lors de la création de l'utilisateur"]));
+            exit(json_encode(["message" => "Erreur lors de la création de l'aliment"]));
         }
     
     case 'DELETE':
@@ -41,7 +41,7 @@ switch($_SERVER["REQUEST_METHOD"]){
                 http_response_code(200); // Code 200 OK
                 exit( json_encode(["message" => "Aliment supprime avec succes"]));
             } else {
-                http_response_code(404); // Code d'erreur 404 Not Found (si l'utilisateur avec cet ID n'existe pas)
+                http_response_code(404); // Code d'erreur 404 Not Found 
                 exit( json_encode(["message" => "Aliment non trouve"]));
             }
         } else {

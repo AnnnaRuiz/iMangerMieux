@@ -52,3 +52,15 @@ function updateFoodItem($nom, $categorie, $calories, $lipides, $glucides, $prote
     return $request->rowCount() > 0 ? ["CATEGORIE" => $categorie, "CALORIES" => $calories, "LIPIDES" => $lipides, "GLUCIDES" => $glucides, "PROTEINES" => $proteines, "SUCRE" => $sucre] : null; // Renvoie les données mises à jour ou null si aucune ligne mise à jour
 
 }
+
+function get_user($email, $pwd){
+    global $pdo;
+    if ($pdo !== null) {
+        $request = $pdo->prepare("SELECT * FROM USERS");
+        $request->execute();
+        $result = $request->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    } else {
+        return null; // Gestion de l'erreur de connexion à la base de données
+    }
+}
