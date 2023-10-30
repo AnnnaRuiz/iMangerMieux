@@ -69,7 +69,10 @@ $(document).ready(function() {
                 $('#inputGlu').val('');
                 $('#inputProt').val('');
                 $('#inputSucre').val('');
+
+                location.reload();
             },
+
             error: function(error) {
                 console.error(error);
             }
@@ -136,7 +139,7 @@ function deleteRow(button) {
         let nom = row.find('td:eq(0)').text();
 
         // Récupérer les nouvelles valeurs des champs de saisie``
-        let categorie = row.find('option:eq(0)').val();
+        let categorie = row.find('#inputCategorie').val();
         let calories = row.find('input:eq(0)').val();
         let lipides = row.find('input:eq(1)').val();
         let glucides = row.find('input:eq(2)').val();
@@ -151,7 +154,7 @@ function deleteRow(button) {
         row.find('td:eq(5)').text(proteines);
         row.find('td:eq(6)').text(sucre);
 
-        row.find("button:contains('Save')").replaceWith(`<button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button><button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>`);
+        row.find("button:contains('Save')").replaceWith(`<button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button> <button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>`);
 
             
     
