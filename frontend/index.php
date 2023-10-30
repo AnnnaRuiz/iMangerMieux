@@ -38,7 +38,17 @@
     }
 
     renderMenuToHTML($currentPageId);
-    echo "<h5>Bienvenue ".$login."</h5>";
+    if ($is_connected){
+        echo '
+            <div class="row">
+                <div class="col-6 text-left">
+                    <h5>Bienvenue '.$login.'</h5>
+                </div>
+                <div class="col-6 text-right">
+                    <a href="index.php?deconnexion">Déconnexion</a>
+                </div>
+            </div>';
+    };
 
     $pageToInclude = $currentPageId . ".php";
 
@@ -51,8 +61,8 @@
 
 ?>
 
-<?php if (!$is_connected): ?>
-    
+<?php if(!$is_connected): ?>
+    <h4> Veuillez vous identifier</h4>
     <div class="container justify-content-center d-flex align-items-center mb-3" >
         <div class="card p-4">
             <h2 class="text-center mb-4">Connexion</h2>
@@ -69,13 +79,6 @@
             </form>
         </div>
     </div>
-
-<?php else: ?>
-
-    <div>
-        <a href="index.php?deconnexion">Déconnexion</a>
-    </div>
-
 <?php endif ?>
 
 <?php require('template_footer.php') ?>

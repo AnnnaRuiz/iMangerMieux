@@ -28,11 +28,7 @@
     else {
         $errorText = "Merci d'utiliser le formulaire de login";
     }
-    if($successfullyLogged) {
-        echo "<h1>Bienvenue ".$login."</h1>";
-        echo "<a href='index.php?deconnexion'>Se déconnecter </a>";
-        
-    } else {
+    if(!$successfullyLogged) {
         echo $errorText;
-    }
-?>
+        
+    } 
