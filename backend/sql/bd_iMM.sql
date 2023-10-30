@@ -24,6 +24,21 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `repasaliment`
+--
+
+DROP TABLE IF EXISTS `repasaliment`;
+CREATE TABLE IF NOT EXISTS `repasaliment` (
+  `REPAS_ID` int NOT NULL,
+  `ALIMENT` varchar(100) NOT NULL,
+  `QUANTITE` float NOT NULL,
+  PRIMARY KEY (`REPAS_ID`,`ALIMENT`),
+  KEY `FK_ESTCONSITUE2` (`ALIMENT`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `aliments`
 --
 
@@ -447,21 +462,6 @@ CREATE TABLE IF NOT EXISTS `repas` (
   `TYPE_REPAS` varchar(50) NOT NULL,
   PRIMARY KEY (`REPAS_ID`),
   KEY `FK_MANGE` (`MAIL`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `repasaliment`
---
-
-DROP TABLE IF EXISTS `repasaliment`;
-CREATE TABLE IF NOT EXISTS `repasaliment` (
-  `REPAS_ID` int NOT NULL,
-  `ALIMENT` varchar(100) NOT NULL,
-  `QUANTITE` float NOT NULL,
-  PRIMARY KEY (`REPAS_ID`,`ALIMENT`),
-  KEY `FK_ESTCONSITUE2` (`ALIMENT`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 -- --------------------------------------------------------
