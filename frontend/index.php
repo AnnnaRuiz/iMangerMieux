@@ -18,9 +18,11 @@
         $is_connected = True;
     }
 
-    if(isset($_POST['email'])) {
+    if(isset($_POST['email']) && isset($_POST['pwd'])) {
         $login = $_POST['email'];
+        $pwd = $_POST['pwd'];
         $_SESSION['email'] = $login;
+        $_SESSION['pwd'] = $pwd;
         $is_connected = True;
     }
 ?>

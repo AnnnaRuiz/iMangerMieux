@@ -1,3 +1,17 @@
+
+<?php
+$email = $_SESSION['email'];
+$pwd = $_SESSION['pwd'];
+$nom = $_SESSION['nom'];
+$taille = $_SESSION['taille'];
+$sexe = $_SESSION['sexe'];
+$poids = $_SESSION['poids'];
+$age = $_SESSION['age'];
+$activite = $_SESSION['activite'];
+
+?>
+
+
 <div class="container mb-3">
     <div class="row">
         <div class="col-12">
