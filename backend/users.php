@@ -14,7 +14,7 @@ switch($_SERVER["REQUEST_METHOD"]){
             $activite = $_POST['ACTIVITE'];
             $user = createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite);
 
-            if ($user != null) {
+            if ($user) {
                 // Utilisateur créé avec succès
                 http_response_code(201); // Code 201 created 
                 header('Content-Type: application/json');
@@ -28,11 +28,29 @@ switch($_SERVER["REQUEST_METHOD"]){
             $email = $_POST['email'];
             $pwd = $_POST['pwd'];
             
-            $result = getUser($email, $pwd);
+            $user = getUser($email, $pwd);
 
-            header('Content-type: application/json');
-            http_response_code(200);
-            exit(json_encode($result));
+            // header('Content-type: application/json');
+            // http_response_code(200);
+            // exit(json_encode($result));
+            if($user!=null){
+                // L'authentification a réussi
+                session_start();
+                $_SESSION['mail'] = $email;
+                $_SESSION['mdp'] = $pwd;
+                //corriger le code ci dessous pour initialiser les varibles de session
+                // $_SESSION['nom'] = $user[0]['NOM'];
+                // $_SESSION['sexe'] = $user[0]['SEXE'];
+                // $_SESSION['age'] = $user[0]['AGE'];
+                // $_SESSION['poids'] = $user[0]['POIDS'];
+                // $_SESSION['taille'] = $user[0]['TAILLE'];
+                // $_SESSION['activite'] = $user[0]['ACTIVITE'];
+                http_response_code(200);
+                exit(json_encode(["message" => "Success", "user" => $user]));
+            }else{
+                http_response_code(404);
+                exit(json_encode(["message" => "Utilisateur non trouvé"]));
+            }
         } else {
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit(json_encode(["message" => "Paramètres manquants pour la connexion"]));

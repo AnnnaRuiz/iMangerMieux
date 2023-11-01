@@ -1,10 +1,10 @@
 $(document).ready(function() {
-    
+
     $('input[type="radio"]').change(function() {
         $('#inputSexe').val($('input[name="sexe"]:checked').val());
     });
 
-    $('#createUserButton').click(function(event) {
+    $('#createUserForm').submit(function(event) {
         event.preventDefault();
         
         let nom = $('#inputNom').val();
@@ -33,6 +33,32 @@ $(document).ready(function() {
                 $('#inputPoids').val('');
                 $('#inputActivite').val('');
                 $('#inputSexe').val('');
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    });
+
+    $('#loginForm').submit(function(event) {
+        event.preventDefault();
+        
+        let email = $('#email').val();
+        let pwd = $('#pwd').val();
+
+        $.ajax({
+            type: 'POST',
+            url: apiURL + '/users.php',
+            data: {MAIL: email, MDP: pwd},
+            success: function(response) {
+                if (response.message === "Success") {
+                    
+                    // TODO
+                    
+                } else {
+                    // L'authentification a échoué
+                    console.error(response.error);
+                }
             },
             error: function(error) {
                 console.error(error);

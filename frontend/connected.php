@@ -1,11 +1,11 @@
 <?php
 
-    // on simule une base de données
-    $users = array(
-        //email => pwd
-        'riri@mail' => 'fifi',
-        'maitre@jedi' => 'luke'
-    );
+    // // on simule une base de données
+    // $users = array(
+    //     //email => pwd
+    //     'riri@mail' => 'fifi',
+    //     'maitre@jedi' => 'luke'
+    // );
 
     $errorText = "";
     $successfullyLogged = false;
@@ -18,7 +18,8 @@
             $successfullyLogged = true;
             $login = $tryLogin;
             session_start();
-            $_SESSION['email']=$login;
+            $_SESSION['mail']=$login;
+            $_SESSION['mdp'] = $pwd;
 
         } else {
              $errorText = "Erreur de login/password";

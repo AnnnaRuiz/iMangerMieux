@@ -1,5 +1,7 @@
 
 <?php
+session_start();
+
 $email = $_SESSION['email'];
 $pwd = $_SESSION['pwd'];
 $nom = $_SESSION['nom'];

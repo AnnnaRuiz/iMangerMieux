@@ -13,16 +13,16 @@
     $is_connected = False;
     
 
-    if(isset($_SESSION['email'])) {
-        $login = $_SESSION['email'];
+    if(isset($_SESSION['mail'])) {
+        $login = $_SESSION['mail'];
         $is_connected = True;
     }
 
     if(isset($_POST['email']) && isset($_POST['pwd'])) {
         $login = $_POST['email'];
         $pwd = $_POST['pwd'];
-        $_SESSION['email'] = $login;
-        $_SESSION['pwd'] = $pwd;
+        $_SESSION['mail'] = $login;
+        $_SESSION['mdp'] = $pwd;
         $is_connected = True;
     }
 ?>
