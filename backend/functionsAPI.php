@@ -53,10 +53,12 @@ function updateFoodItem($nom, $categorie, $calories, $lipides, $glucides, $prote
 
 }
 
-function get_user($email, $pwd){
+function getUser($email, $pwd){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare("SELECT * FROM `USERS` WHERE MAIL=:email AND MDP=:pwd");
+        $request->bindParam(':email', $email, PDO::PARAM_STR);
+        $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_OBJ);
         return $result;
