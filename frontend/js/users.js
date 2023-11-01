@@ -1,34 +1,38 @@
 $(document).ready(function() {
+    
+    $('input[type="radio"]').change(function() {
+        $('#inputSexe').val($('input[name="sexe"]:checked').val());
+    });
 
-    $('#createUser').click(function(event) {
+    $('#createUserButton').click(function(event) {
         event.preventDefault();
         
-        let nom = $('#NOM').val();
-        let mail = $('#MAIL').val();
-        let mdp = $('#MDP').val();
-        let age = $('#AGE').val();
-        let taille = $('#TAILLE').val();
-        let poids = $('#POIDS').val();
-        let sexe = $('#SEXE').val();
-        let activite = $('#ACTIVITE').val();
+        let nom = $('#inputNom').val();
+        let mail = $('#inputMail').val();
+        let mdp = $('#inputMdp').val();
+        let age = $('#inputAge').val();
+        let taille = $('#inputTaille').val();
+        let poids = $('#inputPoids').val();
+        let sexe = $('#inputSexe').val();
+        let activite = $('#inputActivite').val();
 
         $.ajax({
             type: 'POST',
             url: apiURL + '/users.php',
-            data: {nom: nom, mail: mail, mdp: mdp, taille: taille, sexe: sexe, poids: poids, age: age, activite: activite},
+            data: {NOM: nom, MAIL: mail, MDP: mdp, TAILLE: taille, SEXE: sexe, POIDS: poids, AGE: age, ACTIVITE: activite},
             success: function(response) {
                 alert("Création de l'utilisateur réussie");
                 // Ajouter un bouton pour retourner à la page de connexion
                 $('#retourConnexion').show();
 
-                $('#NOM').val('');
-                $('#MAIL').val('');
-                $('#MDP').val('');
-                $('#AGE').val('');
-                $('#TAILLE').val('');
-                $('#POIDS').val('');
-                $('#ACTIVITE').val('');
-                $('#SEXE').val('');
+                $('#inputNom').val('');
+                $('#inputMail').val('');
+                $('#inputMdp').val('');
+                $('#inputAge').val('');
+                $('#inputTaille').val('');
+                $('#inputPoids').val('');
+                $('#inputActivite').val('');
+                $('#inputSexe').val('');
             },
             error: function(error) {
                 console.error(error);
