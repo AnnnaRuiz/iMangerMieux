@@ -52,7 +52,6 @@ $(document).ready(function() {
             data: {email: email, pwd: pwd},
             success: function(response) {
                 if (response) {
-                    alert("Vous êtes connecté");
                     window.location.href = 'index.php'
                 } else {
                     // L'authentification a échoué
@@ -60,7 +59,8 @@ $(document).ready(function() {
                 }
             },
             error: function(error) {
-                console.error(error);
+                alert("Erreur d'email ou de mot de passe, veuillez réessayer");
+                // console.error(error);
             }
         });
     });
