@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <?php
     session_start();
 
@@ -35,20 +36,19 @@
         $_SESSION['mdp'] = $pwd;
         $is_connected = True;
     }
-?>
-<?php 
+
     require_once('template_header.php');
     require_once("template_menu.php");
 ?>
 
 <body>
-<?php
 
+<?php
     $currentPageId = 'accueil';
     if(isset($_GET['page'])){
         $currentPageId=$_GET['page'];
     }
-
+    
     renderMenuToHTML($currentPageId);
     if ($is_connected){
         echo '

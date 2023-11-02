@@ -45,7 +45,7 @@ switch($_SERVER["REQUEST_METHOD"]){
 
                 // header('Content-type: application/json');
                 http_response_code(200);
-                exit(json_encode(["message" => "Success", "user" => $result]));
+                exit(json_encode($result));
             }else{
                 http_response_code(404);
                 exit(json_encode(["message" => "Utilisateur non trouvé"]));

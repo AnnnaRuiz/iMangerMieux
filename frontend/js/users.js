@@ -51,8 +51,9 @@ $(document).ready(function() {
             url: apiURL + '/users.php',
             data: {email: email, pwd: pwd},
             success: function(response) {
-                if (response.message === "Success") {
-                    
+                if (response) {
+                    alert("Vous êtes connecté");
+                    window.location.href = 'index.php'
                 } else {
                     // L'authentification a échoué
                     console.error(response.error);
