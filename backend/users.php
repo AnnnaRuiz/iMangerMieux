@@ -54,5 +54,8 @@ switch($_SERVER["REQUEST_METHOD"]){
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit(json_encode(["message" => "Paramètres manquants pour la connexion"]));
         }
+    default: 
+        http_response_code(501);
+        exit(json_encode(["message" => "Not implemented"]));
        
 }

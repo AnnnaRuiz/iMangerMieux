@@ -2,6 +2,10 @@
     background-color: #2DCD9D;
 }
 
+.text-green{
+    color: #2DCD9D;
+}
+
 .menu{
     text-align: center;
     justify-content: space-between;
@@ -23,6 +27,10 @@ nav li:hover{
 
 #retourConnexion {
     display: none;
+}
+
+.nonVisible{
+    display:none;
 }
 
 

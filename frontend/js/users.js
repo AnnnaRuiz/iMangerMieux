@@ -54,13 +54,13 @@ $(document).ready(function() {
                 if (response) {
                     window.location.href = 'index.php'
                 } else {
-                    // L'authentification a échoué
                     console.error(response.error);
                 }
             },
             error: function(error) {
+                // L'authentification a échoué
                 alert("Erreur d'email ou de mot de passe, veuillez réessayer");
-                // console.error(error);
+                console.error(error);
             }
         });
     });
