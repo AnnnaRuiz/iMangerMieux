@@ -1,19 +1,4 @@
 
-<?php
-session_start();
-
-$email = $_SESSION['email'];
-$pwd = $_SESSION['pwd'];
-$nom = $_SESSION['nom'];
-$taille = $_SESSION['taille'];
-$sexe = $_SESSION['sexe'];
-$poids = $_SESSION['poids'];
-$age = $_SESSION['age'];
-$activite = $_SESSION['activite'];
-
-?>
-
-
 <div class="container mb-3">
     <div class="row">
         <div class="col-12">
@@ -26,8 +11,8 @@ $activite = $_SESSION['activite'];
                 <div class="col-5 m-3 border rounded">
                     <h4 class="text-center">Données de connexion</h4>
                     <hr/>
-                    <p>Nom : <?php ?></p>
-                    <p>Email : <?php ?></p>
+                    <p>Nom : <?php  echo $nom?></p>
+                    <p>Email : <?php echo $login?></p>
                     <p class="border rounded d-inline-flex"> Mot de passe <?php ?></p>
                     <div class="row m-3">
                         <button type="button" class="btn btn-primary ml-auto" onclick="modifyUserAccount(this)">Modifier</button>
@@ -36,10 +21,10 @@ $activite = $_SESSION['activite'];
                 <div class="col-5 m-3 border rounded">
                     <h4 class="text-center">Informations sur l'utilisateur</h4>
                     <hr/>
-                    <p>Sexe : <?php ?></p>
-                    <p>Poids : <?php ?></p>
-                    <p>Taille : <?php ?></p>
-                    <p>Âge : <?php ?></p>
+                    <p>Sexe : <?php echo $sexe?></p>
+                    <p>Poids : <?php echo $poids?> kg</p>
+                    <p>Taille : <?php echo $taille?> cm</p>
+                    <p>Âge : <?php echo $age?> ans</p>
                     <div class="row m-3">
                         <button type="button" class="btn btn-primary ml-auto" onclick="modifyUserInfo(this)">Modifier</button>
                     </div>

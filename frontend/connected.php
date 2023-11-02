@@ -1,11 +1,11 @@
 <?php
 
-    // // on simule une base de données
-    // $users = array(
-    //     //email => pwd
-    //     'riri@mail' => 'fifi',
-    //     'maitre@jedi' => 'luke'
-    // );
+    // on simule une base de données
+    $users = array(
+        //email => pwd
+        'riri@mail' => 'fifi',
+        'maitre@jedi' => 'luke'
+    );
 
     $errorText = "";
     $successfullyLogged = false;
@@ -13,7 +13,7 @@
     if(isset($_POST['email']) && isset($_POST['pwd'])) {
         $tryLogin=$_POST['email'];
         $tryPwd=$_POST['pwd'];
-    // si login existe et password correspond
+    // si login existe et password correspondent
         if( array_key_exists($tryLogin,$users) && $users[$tryLogin]==$tryPwd ) {
             $successfullyLogged = true;
             $login = $tryLogin;

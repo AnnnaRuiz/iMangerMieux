@@ -49,11 +49,9 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: apiURL + '/users.php',
-            data: {MAIL: email, MDP: pwd},
+            data: {email: email, pwd: pwd},
             success: function(response) {
                 if (response.message === "Success") {
-                    
-                    // TODO
                     
                 } else {
                     // L'authentification a échoué

@@ -28,25 +28,24 @@ switch($_SERVER["REQUEST_METHOD"]){
             $email = $_POST['email'];
             $pwd = $_POST['pwd'];
             
-            $user = getUser($email, $pwd);
-
-            // header('Content-type: application/json');
-            // http_response_code(200);
-            // exit(json_encode($result));
-            if($user!=null){
+            $result = getUser($email, $pwd);
+            
+            if($result!=null){
                 // L'authentification a réussi
+                $user = $result[0]; 
                 session_start();
                 $_SESSION['mail'] = $email;
                 $_SESSION['mdp'] = $pwd;
-                //corriger le code ci dessous pour initialiser les varibles de session
-                // $_SESSION['nom'] = $user[0]['NOM'];
-                // $_SESSION['sexe'] = $user[0]['SEXE'];
-                // $_SESSION['age'] = $user[0]['AGE'];
-                // $_SESSION['poids'] = $user[0]['POIDS'];
-                // $_SESSION['taille'] = $user[0]['TAILLE'];
-                // $_SESSION['activite'] = $user[0]['ACTIVITE'];
+                $_SESSION['nom'] = $user->NOM;
+                $_SESSION['sexe'] = $user->SEXE;
+                $_SESSION['age'] = $user->AGE;
+                $_SESSION['poids'] = $user->POIDS;
+                $_SESSION['taille'] = $user->TAILLE;
+                $_SESSION['activite'] = $user->ACTIVITE;
+
+                // header('Content-type: application/json');
                 http_response_code(200);
-                exit(json_encode(["message" => "Success", "user" => $user]));
+                exit(json_encode(["message" => "Success", "user" => $result]));
             }else{
                 http_response_code(404);
                 exit(json_encode(["message" => "Utilisateur non trouvé"]));

@@ -1,5 +1,5 @@
 
-<h1 class="text-center">Ajout des repas</h1>
+    <h1 class="text-center">Ajout des repas</h1>
     <br>
     <table id="repas" class="display table center">
         <thead>
