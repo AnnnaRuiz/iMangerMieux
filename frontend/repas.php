@@ -38,9 +38,9 @@
         </div>
 
         <div class="form-group row">
-            <label for="inputQuantité" class="col-sm-3 col-form-label text-right">Quantité (g)</label>
+            <label for="inputQuantite" class="col-sm-3 col-form-label text-right">Quantité (g)</label>
             <div class="col-sm-3">
-                <input type="number" class="form-control" id="inputQuantité" step="0.1" min='0' required>
+                <input type="number" class="form-control" id="inputQuantite" step="0.1" min='0' required>
             </div>
         </div>
 
