@@ -82,20 +82,21 @@ function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite)
     return ['mail' => $mail];
 }
 
-function getDailyRepas(){
+function getDailyRepas($email){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare("
-        SELECT t1.colonne1, t1.colonne2, t2.colonne3, t2.colonne4
-FROM table1 AS t1
-JOIN table2 AS t2 ON t1.id = t2.table1_id
-WHERE t1.condition = 'valeur1' AND t2.condition = 'valeur2';
-
+        SELECT t1.ALIMENT, t1.QUANTITE, t2.TYPE_REPAS
+            FROM REPASALIMENT AS t1
+            JOIN REPAS AS t2 ON t1.REPAS_ID = t2.REPAS_ID
+            WHERE t2.Mail = :email;
         ");
+        $request->bindParam(':email', $email, PDO::PARAM_STR);
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_OBJ);
         return $result;
-    } else {
+    } 
+    else {
         return null; // Gestion de l'erreur de connexion à la base de données
     }
 }

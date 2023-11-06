@@ -1,9 +1,11 @@
 <?php
+session_start();
 require_once('functionsAPI.php');
 
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
-        $result = getDailyRepas();
+        $mail = $_SESSION['mail'];
+        $result = getDailyRepas($mail);
         header('Content-type: application/json');
         http_response_code(200);
         exit(json_encode($result));
