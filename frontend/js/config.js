@@ -1,5 +1,5 @@
 
-let apiURL = 'http://localhost:8888/iMangerMieux/backend';
+let apiURL = 'http://localhost/iMangerMieux/backend';
 
 
 
