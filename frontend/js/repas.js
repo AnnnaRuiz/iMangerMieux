@@ -10,7 +10,7 @@ $(document).ready(function() {
             }
         },
         columns: [
-            { data: "REPAS_ID", "visible": false, "searchable": false, name: "Id repas"},
+            { data: "REPAS_ID", name: "Id"},
             { data: `TYPE_REPAS`, name: `Repas` },
             { data: `ALIMENT`, name: `Aliments` },
             { data: `QUANTITE`, name: `Quantité (g)`  }, 
@@ -18,8 +18,8 @@ $(document).ready(function() {
                 data: null,
                 render: function (data, type, row) {
                     return `
-                        <button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button>
-                        <button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button type="button" class="btn btn-primary" onclick="modifyRepas(this)">Modify</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteRepas(this)">Delete</button>
                     `;
                 }
             }
@@ -41,13 +41,13 @@ $(document).ready(function() {
             success: function(response) {
                 let newRepasItem= `
                 <tr>
-                    <td class="nonVisible">${response.id}</td>
+                    <td>${response.id}</td>
                     <td>${response.repas}</td>
                     <td>${response.aliment}</td>
                     <td>${response.quantite}</td>
                     <td>
-                        <button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button>
-                        <button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>
+                        <button type="button" class="btn btn-primary" onclick="modifyRepas(this)">Modify</button>
+                        <button type="button" class="btn btn-danger" onclick="deleteRepas(this)">Delete</button>
                     </td>
                 </tr>
                 `;
@@ -68,18 +68,21 @@ $(document).ready(function() {
     });
 })
 
-function deleteRow(button) {
+function deleteRepas(button) {
     let row = $(button).closest('tr');
-
-    // Récupérer les valeurs actuelles des cellules
-    let id = row.find('td.nonVisible').text();
-    $(`#repas tbody tr[data-id="${id}"]`).remove();
+    let id = row.find('td:eq(0)').text();
+    let aliment = row.find('td:eq(2)').text();
+    let quantite = row.find('td:eq(3)').text();
 
     $.ajax({
         type: 'DELETE',
         url: apiURL + '/repas.php',
-        data: {ALIMENT: nom},
+        data: {
+            REPAS_ID: id, 
+            ALIMENT: aliment , 
+            QUANTITE: quantite },
         success: function() {
+            console.log(id, aliment, quantite);
             let table = $('#repas').DataTable();
             table.row(row).remove().draw();
 
@@ -90,31 +93,31 @@ function deleteRow(button) {
     });
     }
 
-    function modifyRow(button) {
+    function modifyRepas(button) {
         // Sélectionner la ligne parente
         let row = $(button).closest('tr');
     
         // Récupérer les valeurs actuelles des cellules
-        let repas = row.find('td:eq(0)').text();
-        let aliment = row.find('td:eq(1)').text();
-        let quantite = row.find('td:eq(2)').text();
+        let repas = row.find('td:eq(1)').text();
+        let aliment = row.find('td:eq(2)').text();
+        let quantite = row.find('td:eq(3)').text();
     
         // Remplacer le contenu des cellules par des champs de saisie pré-remplis
-        row.find('td:eq(0)').html(`<select id="inputTypeRepas" value="${repas}" required>
+        row.find('td:eq(1)').html(`<select id="inputTypeRepas" value="${repas}" required>
                                         <option value="petit dejeuner">Petit déjeuner</option>
                                         <option value="dejeuner">Déjeuner</option>
                                         <option value="snack">Snack</option>
                                         <option value="diner">Dîner</option>
                                     </select>`);
-        row.find('td:eq(1)').html(`<input type="search" class="form-control" id="inputAliment" placeholder="Rechercher..." aria-controls="food" value="${aliment}">`);
-        row.find('td:eq(2)').html(`<input type="number" step="0.1" min="0" id="inputQuantité" value="${quantite}" />`);
+        row.find('td:eq(2)').html(`<input type="search" class="form-control" id="inputAliment" placeholder="Rechercher..." aria-controls="food" value="${aliment}">`);
+        row.find('td:eq(3)').html(`<input type="number" step="0.1" min="0" id="inputQuantité" value="${quantite}" />`);
 
     
         // Ajouter un bouton "Save"
-        row.find('td:eq(3)').html(`<button type="button" class="btn btn-success" onclick="saveRow(this)">Save</button>`);
+        row.find('td:eq(4)').html(`<button type="button" class="btn btn-success" onclick="saveRepas(this)">Save</button>`);
     }
     
-    function saveRow(button) {
+    function saveRepas(button) {
         // Sélectionner la ligne parente
         let row = $(button).closest('tr');
 
@@ -124,11 +127,11 @@ function deleteRow(button) {
         let quantite = row.find('input:eq(1)').val();
 
         
-        row.find('td:eq(0)').text(repas);
-        row.find('td:eq(1)').text(aliment);
-        row.find('td:eq(2)').text(quantite);
+        row.find('td:eq(1)').text(repas);
+        row.find('td:eq(2)').text(aliment);
+        row.find('td:eq(3)').text(quantite);
 
-        row.find("button:contains('Save')").replaceWith(`<button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button> <button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>`);
+        row.find("button:contains('Save')").replaceWith(`<button type="button" class="btn btn-primary" onclick="modifyRepas(this)">Modify</button> <button type="button" class="btn btn-danger" onclick="deleteRepas(this)">Delete</button>`);
 
         // Faire une requête pour mettre à jour les informations dans le backend
         $.ajax({
@@ -137,10 +140,10 @@ function deleteRow(button) {
             contentType: 'application/x-www-form-urlencoded',
             data: {ID_REPAS: id, TYPE_REPAS: repas, ALIMENT: aliment, QUANTITE: quantite},
             success: function() {
-                row.find('td:eq(0)').text(repas);
-                row.find('td:eq(1)').text(aliment);
-                row.find('td:eq(2)').text(quantite);
-                row.find('td:eq(3)').html(`<button type="button" class="btn btn-primary" onclick="modifyRow(this)">Modify</button><button type="button" class="btn btn-danger" onclick="deleteRow(this)">Delete</button>`);
+                row.find('td:eq(1)').text(repas);
+                row.find('td:eq(2)').text(aliment);
+                row.find('td:eq(3)').text(quantite);
+                row.find('td:eq(4)').html(`<button type="button" class="btn btn-primary" onclick="modifyRepas(this)">Modify</button><button type="button" class="btn btn-danger" onclick="deleteRepas(this)">Delete</button>`);
                     },
             error: function(error) {
                 console.error(error);
