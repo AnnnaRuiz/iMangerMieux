@@ -26,7 +26,7 @@ $(document).ready(function() {
         ]
     });
 
-    $('#addRepasButton').click(function(event) {
+    $('#addRepasForm').submit(function(event) {
         event.preventDefault();
 
         let id = getIdRepas();
