@@ -145,9 +145,9 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
         WHERE `REPAS_ID` = :repas_id AND `ALIMENT` = :aliment;
     ');
     $request->bindParam(':quantite', $quantite, PDO::PARAM_STR);
-    $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
     $request->bindParam(':repas_id', $repas_id, PDO::PARAM_STR);
+    $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
     $request->execute();
 
-    return $request->rowCount() > 0 ? ["CATEGORIE" => $categorie, "CALORIES" => $calories, "LIPIDES" => $lipides, "GLUCIDES" => $glucides, "PROTEINES" => $proteines, "SUCRE" => $sucre] : null; // Renvoie les données mises à jour ou null si aucune ligne mise à jour
+    return ['REPAS_ID' => $id];
  }
