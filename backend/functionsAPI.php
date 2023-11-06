@@ -104,8 +104,20 @@ function getDailyRepas($email){
 function createAlimentRepas($mail, $type_repas, $aliment, $quantite){
     global $pdo;
     $dateDuJour = date("Y-m-d");
-    $request = $pdo->prepare('INSERT IGNORE INTO `REPAS` (`REPAS_ID`, `MAIL`, `DATE`, `TYPE_REPAS`) VALUE (NULL, :mail, :date, :type_repas);
-    INSERT INTO `REPASALIMENT`(`REPAS_ID`, `ALIMENT`, `QUANTITE`) VALUE (NULL, :aliment, :quantite);');
+    $request = $pdo->prepare('
+        INSERT INTO REPAS (MAIL, DATE, TYPE_REPAS)
+        SELECT :mail, :date, :type_repas
+        FROM DUAL
+        WHERE NOT EXISTS (
+            SELECT 1
+            FROM REPAS
+            WHERE MAIL = :mail AND DATE = :date AND TYPE_REPAS = :type_repas
+        );
+        INSERT INTO REPASALIMENT (REPAS_ID, ALIMENT, QUANTITE)
+        SELECT REPAS_ID, :aliment, :quantite
+        FROM REPAS
+        WHERE MAIL = :mail AND DATE = :date AND TYPE_REPAS = :type_repas;
+    ');
     $request->bindParam(':mail', $mail, PDO::PARAM_STR);
     $request->bindParam(':date', $dateDuJour, PDO::PARAM_STR);
     $request->bindParam(':type_repas', $type_repas, PDO::PARAM_STR);
