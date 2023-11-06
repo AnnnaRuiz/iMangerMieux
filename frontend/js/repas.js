@@ -72,7 +72,7 @@ function deleteRow(button) {
     let row = $(button).closest('tr');
 
     // Récupérer les valeurs actuelles des cellules
-    let id = row.data('id')
+    let id = row.find('td.nonVisible').text();
     $(`#repas tbody tr[data-id="${id}"]`).remove();
 
     $.ajax({
@@ -148,6 +148,7 @@ function deleteRow(button) {
         });
     }
 
-    function getIdRepas(){
-        //TODO
+    function getIdRepas() {
+        let id = $('#repas tbody tr:first-child td:first-child').text();
+        return id;
     }
