@@ -1,6 +1,6 @@
 <?php
 session_start();
-$mail = $_SESSION['mail'];
+global $mail;
 require_once('functionsAPI.php');
 
 switch($_SERVER["REQUEST_METHOD"]){

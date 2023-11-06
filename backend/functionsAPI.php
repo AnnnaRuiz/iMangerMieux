@@ -86,7 +86,7 @@ function getDailyRepas($email){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare("
-        SELECT t1.ALIMENT, t1.QUANTITE, t2.TYPE_REPAS
+        SELECT t1.REPAS_ID, t2.TYPE_REPAS, t1.ALIMENT, t1.QUANTITE
             FROM REPASALIMENT AS t1
             JOIN REPAS AS t2 ON t1.REPAS_ID = t2.REPAS_ID
             WHERE t2.Mail = :email;
