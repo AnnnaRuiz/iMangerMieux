@@ -81,3 +81,21 @@ function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite)
 
     return ['mail' => $mail];
 }
+
+function getDailyRepas(){
+    global $pdo;
+    if ($pdo !== null) {
+        $request = $pdo->prepare("
+        SELECT t1.colonne1, t1.colonne2, t2.colonne3, t2.colonne4
+FROM table1 AS t1
+JOIN table2 AS t2 ON t1.id = t2.table1_id
+WHERE t1.condition = 'valeur1' AND t2.condition = 'valeur2';
+
+        ");
+        $request->execute();
+        $result = $request->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    } else {
+        return null; // Gestion de l'erreur de connexion à la base de données
+    }
+}

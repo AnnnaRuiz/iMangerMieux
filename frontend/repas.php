@@ -5,10 +5,11 @@
         <thead>
             <tr>
                 <th scope="col" class="nonVisible">Numéro de repas</th>
-                <th scope="col">Date</th>
+                <th scope="col" class="nonVisible">Date</th>
+                <th scope="col">Aliments</th>
+                <th scope="col">Quantité</th>
                 <th scope="col">Type de repas</th>
                 <th scope="col">Actions</th>
-
             </tr>
         </thead>    
         <tbody>
@@ -17,12 +18,6 @@
     </table>
 
     <form id="addRepasForm" class="m-3" method="post">
-        <div class="form-group row">
-            <label for="inputDate" class="col-sm-3 col-form-label text-right">Date</label>
-            <div class="col-sm-3">
-                <input type="date" class="form-control" id="inputDate" required>
-            </div>
-        </div>
 
         <div class="form-group row">
             <label for="inputTypeRepas" class="col-sm-3 col-form-label text-right">Repas</label>
