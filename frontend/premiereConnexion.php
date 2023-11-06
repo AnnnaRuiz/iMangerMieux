@@ -47,10 +47,11 @@
                 <div class="form-group">
                     <label for="inputActivite">Activité</label>
                     <select id="inputActivite" required>
-                        <option value="sedentaire">Sédentaire (moins de 30min /semaine)</option>
-                        <option value="peu actif">Peu actif (entre 30min et 2h /semaine)</option>
-                        <option value="modere">Modéré (entre 2h et 5h /semaine)</option>
-                        <option value="intense">Intense (plus de 5h /semaine)</option>
+                        <option value="Sédentaire">Sédentaire (peu ou pas d'exercice)</option>
+                        <option value="Très peu actif">Très peu actif (exercice léger 1-3j /semaine)</option>
+                        <option value="Peu actif">Peu actif (exercice modéré 3-5j /semaine)</option>
+                        <option value="Actif">Actif (exercice intense 6-7j /semaine)</option>
+                        <option value="Très actif">Très actif (exercice journalier trsè intense)</option>
                     </select>
                 </div>
                 
