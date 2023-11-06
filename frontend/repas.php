@@ -4,11 +4,10 @@
     <table id="repas" class="display table center">
         <thead>
             <tr>
-                <th scope="col" class="nonVisible">Numéro de repas</th>
-                <th scope="col" class="nonVisible">Date</th>
+                <th scope="col" class="nonVisible">Id repas</th>
+                <th scope="col">Repas</th>
                 <th scope="col">Aliments</th>
-                <th scope="col">Quantité</th>
-                <th scope="col">Type de repas</th>
+                <th scope="col">Quantité (g)</th>
                 <th scope="col">Actions</th>
             </tr>
         </thead>    
