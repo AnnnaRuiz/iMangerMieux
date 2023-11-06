@@ -149,5 +149,5 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
     $request->execute();
 
-    return ['REPAS_ID' => $id];
+    return ['REPAS_ID' => $repas_id];
  }
