@@ -4,7 +4,7 @@
     <table id="repas" class="display table center">
         <thead>
             <tr>
-                <th scope="col" class="nonVisible">Id repas</th>
+                <th scope="col">Id</th>
                 <th scope="col">Repas</th>
                 <th scope="col">Aliments</th>
                 <th scope="col">Quantité (g)</th>
