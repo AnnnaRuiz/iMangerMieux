@@ -40,13 +40,40 @@ switch($_SERVER["REQUEST_METHOD"]){
             if ($deleted) {
                 http_response_code(200);
                 exit(json_encode(["message" => "Repas supprimé avec succès"]));
-            } else {
+            }
+            else {
                 http_response_code(500);
                 exit(json_encode(["message" => "Erreur lors de la suppression du repas"]));
             }
-        }else{
+        }
+        else{
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit( json_encode(["message" => "Parametres invalides pour la suppression de l'aliment"]));
+        }
+
+    case 'PUT':
+        parse_str(file_get_contents("php://input"), $putData);
+    
+        if(isset($putData['REPAS_ID']) && isset($putData['TYPE_REPAS']) && isset($putData['ALIMENT']) && isset($putData['QUANTITE'])){
+            $repas_id = $putData['REPAS_ID'];
+            $type_repas = $putData['TYPE_REPAS'];
+            $aliment = $putData['ALIMENT'];
+            $quantite = $putData['QUANTITE'];    
+            $updatedRepasItem = updateRepasItem($repas_id, $type_repas, $aliment, $quantite);
+    
+            if ($updatedRepasItem !== null) {
+                http_response_code(200); // Code 200 OK
+                header('Content-Type: application/json');
+                exit(json_encode($updatedRepasItem));
+            }
+            else {
+                http_response_code(404); // Code d'erreur 404 Not Found
+                exit(json_encode(["message" => "Aliment non trouve"]));
+            }
+        }
+        else {
+            http_response_code(400); // Code d'erreur 400 Bad Request
+            exit(json_encode(["message" => "Parametres invalides pour la mise a jour de l'aliment"]));
         }
         
     default : 
