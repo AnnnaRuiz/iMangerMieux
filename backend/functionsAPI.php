@@ -100,3 +100,18 @@ function getDailyRepas($email){
         return null; // Gestion de l'erreur de connexion à la base de données
     }
 }
+
+function createAlimentRepas($mail, $type_repas, $aliment, $quantite){
+    global $pdo;
+    $dateDuJour = date("Y-m-d");
+    $request = $pdo->prepare('INSERT IGNORE INTO `REPAS` (`REPAS_ID`, `MAIL`, `DATE`, `TYPE_REPAS`) VALUE (NULL, :mail, :date, :type_repas);
+    INSERT INTO `REPASALIMENT`(`REPAS_ID`, `ALIMENT`, `QUANTITE`) VALUE (NULL, :aliment, :quantite);');
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $request->bindParam(':date', $dateDuJour, PDO::PARAM_STR);
+    $request->bindParam(':type_repas', $type_repas, PDO::PARAM_STR);
+    $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
+    $request->bindParam(':quantite', $quantite, PDO::PARAM_STR);
+    $request->execute();
+
+    return ['ALIMENT' => $aliment];
+}
