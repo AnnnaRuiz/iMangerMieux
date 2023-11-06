@@ -11,11 +11,12 @@ switch($_SERVER["REQUEST_METHOD"]){
         exit(json_encode($result));
     
     case 'POST':
-        $mail= $_SESSION['mail'];
+        $mail = $_SESSION['mail'];
+        $date = $_POST['DATE'];
         $type_repas = $_POST['TYPE_REPAS'];
         $aliment = $_POST['ALIMENT'];
         $quantite = $_POST['QUANTITE'];
-        $item = createAlimentRepas($mail, $type_repas, $aliment, $quantite);
+        $item = createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite);
 
         if ($item != null) {
                 
@@ -32,11 +33,10 @@ switch($_SERVER["REQUEST_METHOD"]){
     case 'DELETE':
         parse_str(file_get_contents("php://input"), $deleteData);
         
-        if(isset($deleteData['REPAS_ID']) && isset($deleteData['ALIMENT']) && isset($deleteData['QUANTITE'])){
+        if(isset($deleteData['REPAS_ID']) && isset($deleteData['ALIMENT'])){
             $id = $deleteData['REPAS_ID'];
             $aliment = $deleteData['ALIMENT'];
-            $quantite = $deleteData['QUANTITE'];
-            $deleted = deleteRepas($id, $aliment, $quantite);
+            $deleted = deleteRepas($id, $aliment);
             if ($deleted) {
                 http_response_code(200);
                 exit(json_encode(["message" => "Repas supprimé avec succès"]));
@@ -54,12 +54,11 @@ switch($_SERVER["REQUEST_METHOD"]){
     case 'PUT':
         parse_str(file_get_contents("php://input"), $putData);
     
-        if(isset($putData['REPAS_ID']) && isset($putData['TYPE_REPAS']) && isset($putData['ALIMENT']) && isset($putData['QUANTITE'])){
+        if(isset($putData['REPAS_ID']) && isset($putData['ALIMENT']) && isset($putData['QUANTITE'])){
             $repas_id = $putData['REPAS_ID'];
-            $type_repas = $putData['TYPE_REPAS'];
             $aliment = $putData['ALIMENT'];
             $quantite = $putData['QUANTITE'];    
-            $updatedRepasItem = updateRepasItem($repas_id, $type_repas, $aliment, $quantite);
+            $updatedRepasItem = updateRepasItem($repas_id, $aliment, $quantite);
     
             if ($updatedRepasItem !== null) {
                 http_response_code(200); // Code 200 OK
