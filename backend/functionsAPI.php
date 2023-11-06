@@ -138,7 +138,7 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     return ['REPAS_ID' => $id];
  }
 
- function updateRepasItem($repas_id, $type_repas, $aliment, $quantite){
+ function updateRepasItem($repas_id, $aliment, $quantite){
     global $pdo;
     $request = $pdo->prepare('
         UPDATE `REPASALIMENT` SET `QUANTITE` = :quantite 
