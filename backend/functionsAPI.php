@@ -89,7 +89,7 @@ function getDailyRepas($email){
         SELECT t1.REPAS_ID, t2.TYPE_REPAS, t1.ALIMENT, t1.QUANTITE
             FROM REPASALIMENT AS t1
             JOIN REPAS AS t2 ON t1.REPAS_ID = t2.REPAS_ID
-            WHERE t2.Mail = :email;
+            WHERE t2.MAIL = :email;
         ");
         $request->bindParam(':email', $email, PDO::PARAM_STR);
         $request->execute();
@@ -127,3 +127,14 @@ function createAlimentRepas($mail, $type_repas, $aliment, $quantite){
 
     return ['ALIMENT' => $aliment];
 }
+
+ function deleteRepas($id, $aliment, $quantite){
+    global $pdo;
+    $request = $pdo->prepare('DELETE FROM `REPASALIMENT` WHERE `REPAS_ID`=:id AND `ALIMENT`=:aliment AND `QUANTITE`=:quantite;');
+    $request->bindParam(':id', $id, PDO::PARAM_STR);
+    $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
+    $request->bindParam(':quantite', $quantite, PDO::PARAM_STR);
+    $request->execute();
+
+    return ['REPAS_ID' => $id];
+ }
