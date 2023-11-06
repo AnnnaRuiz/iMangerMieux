@@ -5,6 +5,7 @@
         <thead>
             <tr>
                 <th scope="col">Id</th>
+                <th scope="col">Date</th>
                 <th scope="col">Repas</th>
                 <th scope="col">Aliments</th>
                 <th scope="col">Quantité (g)</th>
@@ -19,13 +20,20 @@
     <form id="addRepasForm" class="m-3" method="post">
 
         <div class="form-group row">
+            <label for="inputDate" class="col-sm-3 col-form-label text-right">Date</label>
+            <div class="col-sm-3">
+                <input type="date" class="form-control" id="inputDate" required>
+            </div>
+        </div>
+
+        <div class="form-group row">
             <label for="inputTypeRepas" class="col-sm-3 col-form-label text-right">Repas</label>
             <div class="col-sm-3">
                 <select id="inputTypeRepas" required>
-                    <option value="petit dejeuner">Petit déjeuner</option>
-                    <option value="dejeuner">Déjeuner</option>
-                    <option value="snack">Snack</option>
-                    <option value="diner">Dîner</option>
+                    <option value="Petit-déjeuner">Petit déjeuner</option>
+                    <option value="Déjeuner">Déjeuner</option>
+                    <option value="Snack">Snack</option>
+                    <option value="Dîner">Dîner</option>
                 </select>
             </div>
         </div>
