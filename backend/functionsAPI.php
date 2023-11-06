@@ -139,17 +139,17 @@ function createAlimentRepas($mail, $type_repas, $aliment, $quantite){
     return ['REPAS_ID' => $id];
  }
 
- function updateRepasItem($repas_id, $type_repas, $aliment, $ancienAliment, $quantite){
+ function updateRepasItem($repas_id, $type_repas, $aliment, $quantite){
     global $pdo;
     $request = $pdo->prepare('
-    UPDATE `REPASALIMENT` SET `ALIMENT` = :aliment, `QUANTITE` = :quantite 
-    WHERE `REPAS_ID` = :repas_id AND `ALIMENT` = :ancienAliment;
-    UPDATE `REPAS` SET `TYPE_REPAS` = :type_repas
-    WHERE `REPAS_ID` = :repas_id;'); 
-    $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
+        UPDATE `REPASALIMENT` SET `QUANTITE` = :quantite 
+        WHERE `REPAS_ID` = :repas_id AND `ALIMENT` = :aliment;
+        UPDATE `REPAS` SET `TYPE_REPAS` = :type_repas
+        WHERE `REPAS_ID` = :repas_id;
+    ');
     $request->bindParam(':quantite', $quantite, PDO::PARAM_STR);
+    $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
     $request->bindParam(':repas_id', $repas_id, PDO::PARAM_STR);
-    $request->bindParam(':ancienAliment', $ancienAliment, PDO::PARAM_STR);
     $request->bindParam(':type_repas', $type_repas, PDO::PARAM_STR);
     $request->execute();
 
