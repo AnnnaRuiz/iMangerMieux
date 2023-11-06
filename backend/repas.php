@@ -1,10 +1,10 @@
 <?php
 session_start();
+$mail = $_SESSION['mail'];
 require_once('functionsAPI.php');
 
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
-        $mail = $_SESSION['mail'];
         $result = getDailyRepas($mail);
         header('Content-type: application/json');
         http_response_code(200);
@@ -14,7 +14,7 @@ switch($_SERVER["REQUEST_METHOD"]){
             $type_repas = $_POST['TYPE_REPAS'];
             $aliment = $_POST['ALIMENT'];
             $quantite = $_POST['QUANTITE'];
-            $item = createAlimentRepas($type_repas, $aliment, $quantite);
+            $item = createAlimentRepas($mail, $type_repas, $aliment, $quantite);
     
             if ($item != null) {
                     
