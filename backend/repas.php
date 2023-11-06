@@ -1,16 +1,17 @@
 <?php
 session_start();
-global $mail;
 require_once('functionsAPI.php');
 
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
+        $mail= $_SESSION['mail'];
         $result = getDailyRepas($mail);
         header('Content-type: application/json');
         http_response_code(200);
         exit(json_encode($result));
     
     case 'POST':
+        $mail= $_SESSION['mail'];
         $type_repas = $_POST['TYPE_REPAS'];
         $aliment = $_POST['ALIMENT'];
         $quantite = $_POST['QUANTITE'];
@@ -27,17 +28,25 @@ switch($_SERVER["REQUEST_METHOD"]){
             http_response_code(500); // Code d'erreur 500 Internal Server Error
             exit(json_encode(["message" => "Erreur lors de la création du repas"]));
         }
-        
+
     case 'DELETE':
-        parse_str(file_get_contents("php://input"), $_DELETE);
-        $id_repas = $_DELETE['ID_REPAS'];
-        $result = deleteRepas($id_repas, $mail);
-        if ($result) {
-            http_response_code(200);
-            exit(json_encode(["message" => "Repas supprimé avec succès"]));
-        } else {
-            http_response_code(500);
-            exit(json_encode(["message" => "Erreur lors de la suppression du repas"]));
+        parse_str(file_get_contents("php://input"), $deleteData);
+        
+        if(isset($deleteData['REPAS_ID']) && isset($deleteData['ALIMENT']) && isset($deleteData['QUANTITE'])){
+            $id = $deleteData['REPAS_ID'];
+            $aliment = $deleteData['ALIMENT'];
+            $quantite = $deleteData['QUANTITE'];
+            $deleted = deleteRepas($id, $aliment, $quantite);
+            if ($deleted) {
+                http_response_code(200);
+                exit(json_encode(["message" => "Repas supprimé avec succès"]));
+            } else {
+                http_response_code(500);
+                exit(json_encode(["message" => "Erreur lors de la suppression du repas"]));
+            }
+        }else{
+            http_response_code(400); // Code d'erreur 400 Bad Request
+            exit( json_encode(["message" => "Parametres invalides pour la suppression de l'aliment"]));
         }
         
     default : 

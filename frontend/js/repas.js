@@ -58,7 +58,7 @@ $(document).ready(function() {
                 $('#inputAliment').val('');
                 $('#inputQuantite').val('');
 
-                // location.reload();
+                location.reload();
             },
 
             error: function(error) {
