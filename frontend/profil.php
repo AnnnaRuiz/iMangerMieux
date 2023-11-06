@@ -9,7 +9,7 @@
             </div>
             <div class="row border border-dark bg-light rounded justify-content-center">
                 <div class="col-5 m-3 border rounded">
-                    <h4 class="text-center">Données de connexion</h4>
+                    <h4 class="text-center text-green">Données de connexion</h4>
                     <hr/>
                     <p>Nom : <?php  echo $nom?></p>
                     <p>Email : <?php echo $login?></p>
@@ -19,7 +19,7 @@
                     </div>
                 </div>
                 <div class="col-5 m-3 border rounded">
-                    <h4 class="text-center">Informations sur l'utilisateur</h4>
+                    <h4 class="text-center text-green">Informations sur l'utilisateur</h4>
                     <hr/>
                     <p>Sexe : <?php echo $sexe?></p>
                     <p>Poids : <?php echo $poids?> kg</p>

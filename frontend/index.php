@@ -52,7 +52,7 @@
     renderMenuToHTML($currentPageId);
     if ($is_connected){
         echo '
-            <div class="row">
+            <div class="row m-auto">
                 <div class="col-6 text-left">
                     <h5 class="text-green">Bienvenue '.$nom.'</h5>
                 </div>
