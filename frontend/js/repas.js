@@ -39,7 +39,7 @@ $(document).ready(function() {
         $.ajax({
             type: 'POST',
             url: apiURL + '/repas.php',
-            data: {ID_REPAS: id, DATE: date, TYPE_REPAS: repas, ALIMENT: aliment, QUANTITE: quantite},
+            data: {REPAS_ID: id, DATE: date, TYPE_REPAS: repas, ALIMENT: aliment, QUANTITE: quantite},
             success: function(response) {
                 let newRepasItem= `
                 <tr>
@@ -129,7 +129,7 @@ function deleteRepas(button) {
             type: 'PUT',
             url: apiURL + '/repas.php',
             contentType: 'application/x-www-form-urlencoded',
-            data: {ID_REPAS: id, DATE: date, TYPE_REPAS: repas, ALIMENT: aliment, QUANTITE: quantite},
+            data: {REPAS_ID: id, ALIMENT: aliment, QUANTITE: quantite},
             success: function(response) {
                 row.find('td:eq(0)').text(id);
                 row.find('td:eq(1)').text(date);
