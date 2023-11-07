@@ -68,17 +68,26 @@ function getUser($email, $pwd){
 }
 function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite){
     global $pdo;
-    $request = $pdo->prepare('INSERT INTO `users` (`NOM`, `MAIL`, `MDP`, `SEXE`, `AGE`, `POIDS`, `TAILLE`, `ACTIVITE`) VALUES (:name, :mail, :pwd, :sexe, :age, :poids, :taille, :activite);');
-    $request->bindParam(':name', $name, PDO::PARAM_STR);
-    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
-    $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
-    $request->bindParam(':sexe', $sexe, PDO::PARAM_STR);
-    $request->bindParam(':age', $age, PDO::PARAM_STR);
-    $request->bindParam(':poids', $poids, PDO::PARAM_STR);
-    $request->bindParam(':taille', $taille, PDO::PARAM_STR);
-    $request->bindParam(':activite', $activite, PDO::PARAM_STR);
-    $request->execute();
 
+    $sql = "SELECT COUNT(*) FROM users WHERE mail = :mail";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['mail' => $mail]);
+    $row = $stmt->fetchColumn();
+
+    if ($row > 0) {
+        return false;
+    } else {
+        $request = $pdo->prepare('INSERT INTO `users` (`NOM`, `MAIL`, `MDP`, `SEXE`, `AGE`, `POIDS`, `TAILLE`, `ACTIVITE`) VALUES (:name, :mail, :pwd, :sexe, :age, :poids, :taille, :activite);');
+        $request->bindParam(':name', $name, PDO::PARAM_STR);
+        $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+        $request->bindParam(':sexe', $sexe, PDO::PARAM_STR);
+        $request->bindParam(':age', $age, PDO::PARAM_STR);
+        $request->bindParam(':poids', $poids, PDO::PARAM_STR);
+        $request->bindParam(':taille', $taille, PDO::PARAM_STR);
+        $request->bindParam(':activite', $activite, PDO::PARAM_STR);
+        $request->execute();
+    }
     return ['mail' => $mail];
 }
 
