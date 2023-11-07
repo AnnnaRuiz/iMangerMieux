@@ -127,7 +127,7 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     return ['ALIMENT' => $aliment];
 }
 
- function deleteRepas($id, $aliment){
+function deleteRepas($id, $aliment){
     global $pdo;
     $request = $pdo->prepare('DELETE FROM `REPASALIMENT` WHERE `REPAS_ID`=:id AND `ALIMENT`=:aliment;');
     $request->bindParam(':id', $id, PDO::PARAM_STR);
@@ -135,9 +135,9 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     $request->execute();
 
     return ['REPAS_ID' => $id];
- }
+}
 
- function updateRepasItem($repas_id, $aliment, $quantite){
+function updateRepasItem($repas_id, $aliment, $quantite){
     global $pdo;
     $request = $pdo->prepare('
         UPDATE `REPASALIMENT` SET `QUANTITE` = :quantite 
@@ -149,18 +149,17 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     $request->execute();
 
     return ['REPAS_ID' => $repas_id];
- }
+}
 
- function extractDailyDatas ($mail){
+function extractDailyDatas ($mail, $date){
     global $pdo;
-    $date = date("Y-m-d");
     if ($pdo !== null) {
         $request = $pdo->prepare('
-            SELECT SUM(a.calories * ra.quantite / 100) AS total_calories,
-            SUM(a.lipides * ra.quantite / 100) AS total_lipides,
-            SUM(a.glucides * ra.quantite / 100) AS total_glucides,
-            SUM(a.PROTEINES * ra.quantite / 100) AS total_proteines,
-            SUM(a.SUCRE * ra.quantite / 100) AS total_sucres
+            SELECT SUM(a.calories * ra.quantite / 100) AS total_daily_calories,
+            SUM(a.lipides * ra.quantite / 100) AS total_daily_lipides,
+            SUM(a.glucides * ra.quantite / 100) AS total_daily_glucides,
+            SUM(a.PROTEINES * ra.quantite / 100) AS total_daily_proteines,
+            SUM(a.SUCRE * ra.quantite / 100) AS total_daily_sucres
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
@@ -176,4 +175,56 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     else {
         return null; // Gestion de l'erreur de connexion à la base de données
     }
- }
+}
+
+function extractMonthlyDatas ($mail, $date){
+    global $pdo;
+    if ($pdo !== null) {
+        $request = $pdo->prepare('
+            SELECT SUM(a.calories * ra.quantite / 100) AS total_monthly_calories,
+            SUM(a.lipides * ra.quantite / 100) AS total_monthly_lipides,
+            SUM(a.glucides * ra.quantite / 100) AS total_monthly_glucides,
+            SUM(a.PROTEINES * ra.quantite / 100) AS total_monthly_proteines,
+            SUM(a.SUCRE * ra.quantite / 100) AS total_monthly_sucres
+            FROM Repas r
+            JOIN RepasAliment ra ON r.repas_id = ra.repas_id
+            JOIN Aliments a ON ra.aliment = a.aliment
+            WHERE MONTH(r.DATE) = MONTH(:date) AND YEAR(r.DATE) = YEAR(:date) AND r.MAIL = :mail;
+        ');
+        $request->bindParam(':date', $date, PDO::PARAM_STR);
+        $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $request->execute();
+
+        $result = $request->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+    else {
+        return null; // Gestion de l'erreur de connexion à la base de données
+    }
+}
+
+function extractWeeklyDatas ($mail, $date){
+    global $pdo;
+    if ($pdo !== null) {
+        $request = $pdo->prepare('
+            SELECT SUM(a.calories * ra.quantite / 100) AS total_weekly_calories,
+            SUM(a.lipides * ra.quantite / 100) AS total_weekly_lipides,
+            SUM(a.glucides * ra.quantite / 100) AS total_weekly_glucides,
+            SUM(a.PROTEINES * ra.quantite / 100) AS total_weekly_proteines,
+            SUM(a.SUCRE * ra.quantite / 100) AS total_weekly_sucres
+            FROM Repas r
+            JOIN RepasAliment ra ON r.repas_id = ra.repas_id
+            JOIN Aliments a ON ra.aliment = a.aliment
+            WHERE WEEK(r.DATE) = WEEK(:date) AND r.MAIL = :mail;
+        ');
+        $request->bindParam(':date', $date, PDO::PARAM_STR);
+        $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $request->execute();
+
+        $result = $request->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+    else {
+        return null; // Gestion de l'erreur de connexion à la base de données
+    }
+}
