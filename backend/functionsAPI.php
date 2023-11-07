@@ -91,6 +91,33 @@ function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite)
     return ['mail' => $mail];
 }
 
+function updateUserConnexionData($mail, $nom, $pwd){
+    global $pdo;
+    
+    $request = $pdo->prepare('UPDATE `USERS` SET `NAME` = :nom, `MDP` = :pwd WHERE `USERS`.`MAIL` = :mail;'); 
+    $request->bindParam(':nom', $name, PDO::PARAM_STR);
+    $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $request->execute();
+
+    return ['mail' => $mail];
+}
+
+function updateUserPersonalData($mail, $sexe, $age, $poid, $taille, $activite){
+    global $pdo;
+    
+    $request = $pdo->prepare('UPDATE `USERS` SET `SEXE` = :sexe, `AGE` = :age, `POIDS` = :poids, `TAILLE` = :taille, `ACTIVITE` = :activite WHERE `USERS`.`MAIL` = :mail;'); 
+    $request->bindParam(':sexe', $sexe, PDO::PARAM_STR);
+    $request->bindParam(':age', $age, PDO::PARAM_STR);
+    $request->bindParam(':poids', $poids, PDO::PARAM_STR);
+    $request->bindParam(':taille', $taille, PDO::PARAM_STR);
+    $request->bindParam(':activite', $activite, PDO::PARAM_STR);
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $request->execute();
+
+    return ['mail' => $mail];
+}
+
 function getDailyRepas($email){
     global $pdo;
     if ($pdo !== null) {
