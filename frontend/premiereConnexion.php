@@ -33,15 +33,15 @@
                 </div>
                 <div class="form-group">
                     <label for="inputAge">Âge</label>
-                    <input type="number" class="form-control" id="inputAge" placeholder="Votre âge" required>
+                    <input type="number" class="form-control" id="inputAge" min="0" placeholder="Votre âge" required>
                 </div>
                 <div class="form-group">
                     <label for="inputTaille">Taille (en cm)</label>
-                    <input type="number" class="form-control" id="inputTaille" placeholder="Votre taille" required>
+                    <input type="number" class="form-control" id="inputTaille" min="0" placeholder="Votre taille" required>
                 </div>
                 <div class="form-group">
                     <label for="inputPoids">Poids (en kg)</label>
-                    <input type="number" class="form-control"  step="0.1" id="inputPoids" placeholder="Votre poids" required>
+                    <input type="number" class="form-control"  step="0.1" id="inputPoids" min="0" placeholder="Votre poids" required>
                 </div>
 
                 <div class="form-group">
