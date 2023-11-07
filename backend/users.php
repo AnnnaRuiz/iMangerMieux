@@ -54,6 +54,40 @@ switch($_SERVER["REQUEST_METHOD"]){
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit(json_encode(["message" => "Paramètres manquants pour la connexion"]));
         }
+    case 'PUT':
+        parse_str(file_get_contents("php://input"), $putData);
+        session_start();
+        if (isset($_SESSION['mail'])) {
+            $mail = $_SESSION['mail'];
+        }
+
+        if(isset($putData['NOM']) && isset($putData['MDP'])){
+            $_SESSION['nom'] = $putData['NOM'];
+            $_SESSION['mdp'] = $putData['MDP'];
+            
+            $updatedUserCoData = updateUserConnexionData($mail, $putData['NOM'], $putData['MDP']);
+    
+            http_response_code(200); // Code 200 OK
+            header('Content-Type: application/json');
+            exit(json_encode($updatedUserCoData));
+        }
+        elseif(isset($putData['SEXE']) && isset($putData['AGE']) && isset($putData['POIDS']) && isset($putData['TAILLE']) && isset($putData['ACTIVITE'])){
+            $_SESSION['sexe'] = $putData['SEXE'];
+            $_SESSION['age'] = $putData['AGE'];
+            $_SESSION['poids'] = $putData['POIDS'];
+            $_SESSION['taille'] = $putData['TAILLE'];
+            $_SESSION['activite'] = $putData['ACTIVITE'];
+
+            $updatedUserCo = updateUserPersonalData($mail, $putData['SEXE'], $putData['AGE'], $putData['POIDS'], $putData['TAILLE'], $putData['ACTIVITE']);
+            http_response_code(200); // Code 200 OK
+            header('Content-Type: application/json');
+            exit(json_encode($updatedUserCo));
+        } 
+        else {
+            http_response_code(400); // Code d'erreur 400 Bad Request
+            exit(json_encode(["message" => "Parametres invalides pour la mise a jour des données de l'utilisateur"]));
+        }
+
     default: 
         http_response_code(501);
         exit(json_encode(["message" => "Not implemented"]));

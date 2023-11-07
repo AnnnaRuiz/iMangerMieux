@@ -35,7 +35,7 @@ $(document).ready(function() {
                 $('#inputSexe').val('');
             },
             error: function(error) {
-                alert("Problème lors de la création de l'utilisateur");
+                alert("Création de l'utilisateur impossible. Rentrer une adresse mail différente.");
                 console.error(error);
             }
         });

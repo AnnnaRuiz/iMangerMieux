@@ -66,17 +66,54 @@ function getUser($email, $pwd){
         return null; // Gestion de l'erreur de connexion à la base de données
     }
 }
+
 function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite){
     global $pdo;
-    $request = $pdo->prepare('INSERT INTO `users` (`NOM`, `MAIL`, `MDP`, `SEXE`, `AGE`, `POIDS`, `TAILLE`, `ACTIVITE`) VALUES (:name, :mail, :pwd, :sexe, :age, :poids, :taille, :activite);');
-    $request->bindParam(':name', $name, PDO::PARAM_STR);
-    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+
+    $sql = "SELECT COUNT(*) FROM users WHERE mail = :mail";
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(['mail' => $mail]);
+    $row = $stmt->fetchColumn();
+
+    if ($row > 0) {
+        return false;
+    } else {
+        $request = $pdo->prepare('INSERT INTO `users` (`NOM`, `MAIL`, `MDP`, `SEXE`, `AGE`, `POIDS`, `TAILLE`, `ACTIVITE`) VALUES (:name, :mail, :pwd, :sexe, :age, :poids, :taille, :activite);');
+        $request->bindParam(':name', $name, PDO::PARAM_STR);
+        $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+        $request->bindParam(':sexe', $sexe, PDO::PARAM_STR);
+        $request->bindParam(':age', $age, PDO::PARAM_STR);
+        $request->bindParam(':poids', $poids, PDO::PARAM_STR);
+        $request->bindParam(':taille', $taille, PDO::PARAM_STR);
+        $request->bindParam(':activite', $activite, PDO::PARAM_STR);
+        $request->execute();
+    }
+    return ['mail' => $mail];
+}
+
+function updateUserConnexionData($mail, $nom, $pwd){
+    global $pdo;
+    
+    $request = $pdo->prepare('UPDATE `USERS` SET `NOM` = :nom, `MDP` = :pwd WHERE `USERS`.`MAIL` = :mail;'); 
+    $request->bindParam(':nom', $nom, PDO::PARAM_STR);
     $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $request->execute();
+
+    return ['mail' => $mail];
+}
+
+function updateUserPersonalData($mail, $sexe, $age, $poids, $taille, $activite){
+    global $pdo;
+    
+    $request = $pdo->prepare('UPDATE `USERS` SET `SEXE` = :sexe, `AGE` = :age, `POIDS` = :poids, `TAILLE` = :taille, `ACTIVITE` = :activite WHERE `USERS`.`MAIL` = :mail;'); 
     $request->bindParam(':sexe', $sexe, PDO::PARAM_STR);
     $request->bindParam(':age', $age, PDO::PARAM_STR);
     $request->bindParam(':poids', $poids, PDO::PARAM_STR);
     $request->bindParam(':taille', $taille, PDO::PARAM_STR);
     $request->bindParam(':activite', $activite, PDO::PARAM_STR);
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
     $request->execute();
 
     return ['mail' => $mail];
@@ -155,11 +192,11 @@ function extractDailyDatas ($mail, $date){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare('
-            SELECT SUM(a.calories * ra.quantite / 100) AS total_daily_calories,
-            SUM(a.lipides * ra.quantite / 100) AS total_daily_lipides,
-            SUM(a.glucides * ra.quantite / 100) AS total_daily_glucides,
-            SUM(a.PROTEINES * ra.quantite / 100) AS total_daily_proteines,
-            SUM(a.SUCRE * ra.quantite / 100) AS total_daily_sucres
+            SELECT ROUND(SUM(a.calories * ra.quantite / 100), 2) AS total_daily_calories,
+            ROUND(SUM(a.lipides * ra.quantite / 100), 2) AS total_daily_lipides,
+            ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_daily_glucides,
+            ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_daily_proteines,
+            ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_daily_sucres
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
@@ -181,11 +218,11 @@ function extractMonthlyDatas ($mail, $date){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare('
-            SELECT SUM(a.calories * ra.quantite / 100) AS total_monthly_calories,
-            SUM(a.lipides * ra.quantite / 100) AS total_monthly_lipides,
-            SUM(a.glucides * ra.quantite / 100) AS total_monthly_glucides,
-            SUM(a.PROTEINES * ra.quantite / 100) AS total_monthly_proteines,
-            SUM(a.SUCRE * ra.quantite / 100) AS total_monthly_sucres
+            SELECT ROUND(SUM(a.calories * ra.quantite / 100), 2) AS total_monthly_calories,
+            ROUND(SUM(a.lipides * ra.quantite / 100), 2) AS total_monthly_lipides,
+            ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_monthly_glucides,
+            ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_monthly_proteines,
+            ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_monthly_sucres
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
@@ -207,11 +244,11 @@ function extractWeeklyDatas ($mail, $date){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare('
-            SELECT SUM(a.calories * ra.quantite / 100) AS total_weekly_calories,
-            SUM(a.lipides * ra.quantite / 100) AS total_weekly_lipides,
-            SUM(a.glucides * ra.quantite / 100) AS total_weekly_glucides,
-            SUM(a.PROTEINES * ra.quantite / 100) AS total_weekly_proteines,
-            SUM(a.SUCRE * ra.quantite / 100) AS total_weekly_sucres
+            SELECT ROUND(SUM(a.calories * ra.quantite / 100), 2) AS total_weekly_calories,
+            ROUND(SUM(a.lipides * ra.quantite / 100), 2) AS total_weekly_lipides,
+            ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_weekly_glucides,
+            ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_weekly_proteines,
+            ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_weekly_sucres
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
