@@ -35,6 +35,7 @@ $(document).ready(function() {
                 $('#inputSexe').val('');
             },
             error: function(error) {
+                alert("Problème lors de la création de l'utilisateur");
                 console.error(error);
             }
         });
@@ -52,7 +53,13 @@ $(document).ready(function() {
             data: {email: email, pwd: pwd},
             success: function(response) {
                 if (response) {
-                    window.location.href = 'index.php'
+                    let user = JSON.parse(response);
+                    setCookie('sexe',user[0].SEXE);
+                    setCookie('taille',user[0].TAILLE);
+                    setCookie('poids',user[0].POIDS);
+                    setCookie('age',user[0].AGE);
+                    setCookie('activite',user[0].ACTIVITE);
+                    window.location.href = 'index.php';
                 } else {
                     console.error(response.error);
                 }
@@ -66,5 +73,13 @@ $(document).ready(function() {
     });
 });
 
-
-
+function setCookie(name, value) {
+    var days = 1; // nombre de jours avant expirations du cookie
+    var expires = "";
+    if (days) {
+        var date = new Date();
+        date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+        expires = "; expires=" + date.toUTCString();
+    }
+    document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}

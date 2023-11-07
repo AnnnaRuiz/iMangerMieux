@@ -1,48 +1,33 @@
-<?php require_once('calculsJournal.php') ?>
+<?php 
+if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($_COOKIE['dailyLipides']) && isset($_COOKIE['dailyGlucides']) && isset($_COOKIE['dailyProteines'])) {
+    $dailyCalories = $_COOKIE['dailyCalories'];
+    $dailySucres = $_COOKIE['dailySucres'];
+    $dailyLipides = $_COOKIE['dailyLipides'];
+    $dailyGlucides = $_COOKIE['dailyGlucides'];
+    $dailyProteines = $_COOKIE['dailyProteines'];
+}
 
+?>
 
-<button type="button" class="btn btn-primary" id="miseAJourDatas">Actualiser les données</button>
+    <button type="button" class="btn btn-primary" id="miseAJourDatas">Actualiser les données</button>
 
+    <hr>
 
-<hr>
+    <h1 class="text-center mb-5">Statistiques du jour</h1>
 
+    <?php //statistics($tmp='daily'); ?>
 
-<h1 class="text-center mb-5">Statistiques du jour</h1>
-<?php statistics($caloriesPercentageDay, $sucrePercentageDay, $lipPercentageDay, $gluPercentageDay, $protPercentageDay); ?>
-
-
-<hr>
-
-
-<h1 class="text-center mb-5">Statistiques hebdomadaire</h1>
-<?php statistics($caloriesPercentageWeek, $sucrePercentageWeek, $lipPercentageWeek, $gluPercentageWeek, $protPercentageWeek); ?>
-
-
-<hr>
-
-
-<h1 class="text-center mb-5">Statistiques mensuel</h1>
-<?php statistics($caloriesPercentageMonth, $sucrePercentageMonth, $lipPercentageMonth, $gluPercentageMonth, $protPercentageMonth); ?>
-
-
-<hr>
-
-
-<?php
-
-function statistics($caloriesPercentage, $sucrePercentage, $lipPercentage, $gluPercentage, $protPercentage){
-    echo "
-        <div class='row justify-content-center'>
+    <div class='row justify-content-center'>
         <h4>Calories consommées par rapport au total recommandé calculé d'après votre profil :</h4>
         <div class='col-9 progress'>
-            <div class='progress-bar' role='progressbar' style='width: ".$caloriesPercentage."%;' aria-valuenow='".$caloriesPercentage."' aria-valuemin='0' aria-valuemax='100'>".$caloriesPercentage."%</div>
+            <div class='progress-bar' role='progressbar' style='width: <?= $dailyCalories?>%;' aria-valuenow='<?= $dailyCalories?>' aria-valuemin='0' aria-valuemax='100'><?= $dailyCalories?>%</div>
         </div>
-    </div>
+    </div> 
     <br>
     <div class='row justify-content-center'>
         <h4>Sucre consommé sur la journée par rapport au total recommandé par l'OMS :</h4>
         <div class='col-9 progress'>
-            <div class='progress-bar' role='progressbar' style='width: ".$sucrePercentage."%;' aria-valuenow='".$sucrePercentage."' aria-valuemin='0' aria-valuemax='100'>".$sucrePercentage."%</div>
+            <div class='progress-bar' role='progressbar' style='width: <?= $dailySucres?>%;' aria-valuenow='<?= $dailySucres?>' aria-valuemin='0' aria-valuemax='100'><?= $dailySucres?>%</div>
         </div>
         <p> Recommandations de l'OMS : moins de 10 % de la ration énergétique totale quotidienne</p>
     </div>
@@ -50,12 +35,44 @@ function statistics($caloriesPercentage, $sucrePercentage, $lipPercentage, $gluP
     <div class='row justify-content-center'>
         <h4>Porportions de lipides, glucides et protéines consommées sur la journée :</h4>
         <div class='col-9 progress'>
-            <div class='progress-bar' role='progressbar' style='width: ".$lipPercentage."%' aria-valuenow='".$lipPercentage."' aria-valuemin='0' aria-valuemax='100'>".$lipPercentage."%</div>
-            <div class='progress-bar bg-success' role='progressbar' style='width: ".$gluPercentage."%' aria-valuenow='".$gluPercentage."' aria-valuemin='0' aria-valuemax='100'>".$gluPercentage."%</div>
-            <div class='progress-bar bg-info' role='progressbar' style='width: ".$protPercentage."%' aria-valuenow='".$protPercentage."' aria-valuemin='0' aria-valuemax='100'>".$protPercentage."%</div>
+            <div class='progress-bar' role='progressbar' style='width: <?= $dailyLipides?>%' aria-valuenow='<?= $dailyLipides?>' aria-valuemin='0' aria-valuemax='100'><?= $dailyLipides?>%</div>
+            <div class='progress-bar bg-success' role='progressbar' style='width: <?= $dailyGlucides?>%' aria-valuenow='<?= $dailyGlucides?>' aria-valuemin='0' aria-valuemax='100'><?= $dailyGlucides?>%</div>
+            <div class='progress-bar bg-info' role='progressbar' style='width: <?= $dailyProteines?>%' aria-valuenow='<?= $dailyProteines?>' aria-valuemin='0' aria-valuemax='100'><?= $dailyProteines?>%</div>
         </div>
     </div>
-    ";
-}
+
+
+    <hr>
+
+
+    <h1 class="text-center mb-5">Statistiques hebdomadaire</h1>
+    <?php //statistics($tmp='weekly'); ?>
+
+
+    <hr>
+
+
+    <h1 class="text-center mb-5">Statistiques mensuel</h1>
+    <?php //statistics($tmp='monthly'); ?>
+
+
+
+    <hr>
+
+
+<?php
+
+// function statistics($tmp){
+//     define('Calories', 'Calories');
+//     echo "
+//     <div class='row justify-content-center'>
+//         <h4>Calories consommées par rapport au total recommandé calculé d'après votre profil :</h4>
+//         <div class='col-9 progress'>
+//             <div class='progress-bar' role='progressbar' style='width:". $tmp.Calories."' aria-valuenow='".$tmp.Calories."' aria-valuemin='0' aria-valuemax='100'>".$tmp.Calories."%</div>
+//         </div>
+//     </div>
+//     ";
+// }
+
 
 ?>
