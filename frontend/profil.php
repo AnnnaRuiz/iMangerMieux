@@ -144,7 +144,13 @@
         userInfo.find("p:contains('Âge')").next("div").html('<input type="number">');
         userInfo.find("p:contains('Poids')").next("div").html('<input type="number">');
         userInfo.find("p:contains('Taille')").next("div").html('<input type="number">');
-        userInfo.find("p:contains('Activité')").next("div").html('<input type="text">');
+        userInfo.find("p:contains('Activité')").next("div").html(`<select id="inputActivite" required>
+                        <option value="Sédentaire">Sédentaire (peu ou pas d'exercice)</option>
+                        <option value="Très peu actif">Très peu actif (exercice léger 1-3j /semaine)</option>
+                        <option value="Peu actif">Peu actif (exercice modéré 3-5j /semaine)</option>
+                        <option value="Actif">Actif (exercice intense 6-7j /semaine)</option>
+                        <option value="Très actif">Très actif (exercice journalier trsè intense)</option>
+                    </select>`);
 
     
         // Remplace le bouton "Modifier" par un bouton "Enregistrer"
