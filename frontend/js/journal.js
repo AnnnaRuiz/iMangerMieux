@@ -1,12 +1,20 @@
-$.ajax({
-    type: 'GET',
-    url: apiURL + '/journal.php',
-    data: {total_calories: calories, total_lipides: lipides, total_glucides: glucides, total_proteines: proteines, total_sucres : sucres},
-    success: function(response) {
-        
-    },
+$(document).ready(function() {
 
-    error: function(error) {
-        console.error(error);
-    }
-});
+    $('#miseAJourDatas').click(function() {
+
+        $.ajax({
+            type: 'POST',
+            url: apiURL + '/journal.php',
+            data: {},
+            success: function(response) {
+                
+            },
+
+            error: function(error) {
+                console.error(error);
+            }
+        });
+
+    });
+
+})

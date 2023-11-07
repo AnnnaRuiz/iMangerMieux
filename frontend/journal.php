@@ -1,36 +1,61 @@
+<?php require_once('calculsJournal.php') ?>
+
+
+<button type="button" class="btn btn-primary" id="miseAJourDatas">Actualiser les données</button>
+
+
+<hr>
+
+
+<h1 class="text-center mb-5">Statistiques du jour</h1>
+<?php statistics($caloriesPercentageDay, $sucrePercentageDay, $lipPercentageDay, $gluPercentageDay, $protPercentageDay); ?>
+
+
+<hr>
+
+
+<h1 class="text-center mb-5">Statistiques hebdomadaire</h1>
+<?php statistics($caloriesPercentageWeek, $sucrePercentageWeek, $lipPercentageWeek, $gluPercentageWeek, $protPercentageWeek); ?>
+
+
+<hr>
+
+
+<h1 class="text-center mb-5">Statistiques mensuel</h1>
+<?php statistics($caloriesPercentageMonth, $sucrePercentageMonth, $lipPercentageMonth, $gluPercentageMonth, $protPercentageMonth); ?>
+
+
+<hr>
+
+
 <?php
-$metabolisme=0;
 
-if ($sexe == 'M') {
-    $metabolisme = 88.362 + (13.397 * $poids) + (4.799 * $taille) - (5.677 * $age);
-} else {
-    $metabolisme = 447.593 + (9.247 * $poids) + (3.098 * $taille) - (4.330 * $age);
-} 
-
-if( $activite == 'Sédentaire'){
-    $metabolisme = $metabolisme * 1.2;
-}elseif( $activite == 'Très peu actif'){
-    $metabolisme = $metabolisme * 1.375;
-}elseif( $activite == 'Peu actif'){
-    $metabolisme = $metabolisme * 1.55;
-}elseif( $activite == 'Actif'){
-    $metabolisme = $metabolisme * 1.725;
-}else{
-    $metabolisme = $metabolisme * 1.9;
+function statistics($caloriesPercentage, $sucrePercentage, $lipPercentage, $gluPercentage, $protPercentage){
+    echo "
+        <div class='row justify-content-center'>
+        <h4>Calories consommées par rapport au total recommandé calculé d'après votre profil :</h4>
+        <div class='col-9 progress'>
+            <div class='progress-bar' role='progressbar' style='width: ".$caloriesPercentage."%;' aria-valuenow='".$caloriesPercentage."' aria-valuemin='0' aria-valuemax='100'>".$caloriesPercentage."%</div>
+        </div>
+    </div>
+    <br>
+    <div class='row justify-content-center'>
+        <h4>Sucre consommé sur la journée par rapport au total recommandé par l'OMS :</h4>
+        <div class='col-9 progress'>
+            <div class='progress-bar' role='progressbar' style='width: ".$sucrePercentage."%;' aria-valuenow='".$sucrePercentage."' aria-valuemin='0' aria-valuemax='100'>".$sucrePercentage."%</div>
+        </div>
+        <p> Recommandations de l'OMS : moins de 10 % de la ration énergétique totale quotidienne</p>
+    </div>
+    <br>
+    <div class='row justify-content-center'>
+        <h4>Porportions de lipides, glucides et protéines consommées sur la journée :</h4>
+        <div class='col-9 progress'>
+            <div class='progress-bar' role='progressbar' style='width: ".$lipPercentage."%' aria-valuenow='".$lipPercentage."' aria-valuemin='0' aria-valuemax='100'>".$lipPercentage."%</div>
+            <div class='progress-bar bg-success' role='progressbar' style='width: ".$gluPercentage."%' aria-valuenow='".$gluPercentage."' aria-valuemin='0' aria-valuemax='100'>".$gluPercentage."%</div>
+            <div class='progress-bar bg-info' role='progressbar' style='width: ".$protPercentage."%' aria-valuenow='".$protPercentage."' aria-valuemin='0' aria-valuemax='100'>".$protPercentage."%</div>
+        </div>
+    </div>
+    ";
 }
 
 ?>
-
-
-
-
-<hr>
-<h1 class="text-center mb-5">Statistiques du jour</h1>
-
-<div class="row justify-content-center">
-    <h4>Calories consommées sur la journée par rapport au total recommandé calculé d'après votre profil :</h4>
-    <div class="col-9 progress">
-        <div class="progress-bar" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100">75%</div>
-    </div>
-</div>
-<hr>

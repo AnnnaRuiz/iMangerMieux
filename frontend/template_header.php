@@ -13,6 +13,7 @@
     <script src="js/aliments.js"></script>
     <script src="js/users.js"></script>
     <script src="js/repas.js"></script>
+    <script src="js/journal.js"></script>
 
     <title>iMM</title>
 </head>
