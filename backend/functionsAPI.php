@@ -90,7 +90,6 @@ function getDailyRepas($email){
             FROM REPASALIMENT AS t1
             JOIN REPAS AS t2 ON t1.REPAS_ID = t2.REPAS_ID
             WHERE t2.MAIL = :email
-            ORDER BY DATE ASC;
         ");
         $request->bindParam(':email', $email, PDO::PARAM_STR);
         $request->execute();
@@ -150,4 +149,31 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     $request->execute();
 
     return ['REPAS_ID' => $repas_id];
+ }
+
+ function extractDailyDatas ($mail){
+    global $pdo;
+    $date = date("Y-m-d");
+    if ($pdo !== null) {
+        $request = $pdo->prepare('
+            SELECT SUM(a.calories * ra.quantite / 100) AS total_calories,
+            SUM(a.lipides * ra.quantite / 100) AS total_lipides,
+            SUM(a.glucides * ra.quantite / 100) AS total_glucides,
+            SUM(a.PROTEINES * ra.quantite / 100) AS total_proteines,
+            SUM(a.SUCRE * ra.quantite / 100) AS total_sucres
+            FROM Repas r
+            JOIN RepasAliment ra ON r.repas_id = ra.repas_id
+            JOIN Aliments a ON ra.aliment = a.aliment
+            WHERE r.DATE = :date AND r.MAIL = :mail;
+        ');
+        $request->bindParam(':date', $date, PDO::PARAM_STR);
+        $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+        $request->execute();
+
+        $result = $request->fetchAll(PDO::FETCH_OBJ);
+        return $result;
+    }
+    else {
+        return null; // Gestion de l'erreur de connexion à la base de données
+    }
  }
