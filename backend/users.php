@@ -56,25 +56,29 @@ switch($_SERVER["REQUEST_METHOD"]){
         }
     case 'PUT':
         parse_str(file_get_contents("php://input"), $putData);
-    
+        session_start();
+        if (isset($_SESSION['mail'])) {
+            $mail = $_SESSION['mail'];
+        }
+
         if(isset($putData['NOM']) && isset($putData['MDP'])){
             $_SESSION['nom'] = $putData['NOM'];
             $_SESSION['mdp'] = $putData['MDP'];
             
-            $updatedUserCoData = updateUserConnexionData($_SESSION['mail'], $putData['NOM'], $putData['MDP']);
+            $updatedUserCoData = updateUserConnexionData($mail, $putData['NOM'], $putData['MDP']);
     
             http_response_code(200); // Code 200 OK
             header('Content-Type: application/json');
             exit(json_encode($updatedUserCoData));
         }
-        elseif(isset($_SESSION['mail']) && isset($putData['MDP']) && isset($putData['SEXE']) && isset($putData['AGE']) && isset($putData['POIDS']) && isset($putData['TAILLE']) && isset($putData['ACTIVITE'])){
+        elseif(isset($putData['SEXE']) && isset($putData['AGE']) && isset($putData['POIDS']) && isset($putData['TAILLE']) && isset($putData['ACTIVITE'])){
             $_SESSION['sexe'] = $putData['SEXE'];
             $_SESSION['age'] = $putData['AGE'];
             $_SESSION['poids'] = $putData['POIDS'];
             $_SESSION['taille'] = $putData['TAILLE'];
             $_SESSION['activite'] = $putData['ACTIVITE'];
 
-            $updatedUserCo = updateUserPersonalData($_SESSION['mail'], $putData['SEXE'], $putData['AGE'], $putData['POIDS'], $putData['TAILLE'], $putData['ACTIVITE']);
+            $updatedUserCo = updateUserPersonalData($mail, $putData['SEXE'], $putData['AGE'], $putData['POIDS'], $putData['TAILLE'], $putData['ACTIVITE']);
             http_response_code(200); // Code 200 OK
             header('Content-Type: application/json');
             exit(json_encode($updatedUserCo));

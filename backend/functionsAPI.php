@@ -66,6 +66,7 @@ function getUser($email, $pwd){
         return null; // Gestion de l'erreur de connexion à la base de données
     }
 }
+
 function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite){
     global $pdo;
 
@@ -94,8 +95,8 @@ function createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite)
 function updateUserConnexionData($mail, $nom, $pwd){
     global $pdo;
     
-    $request = $pdo->prepare('UPDATE `USERS` SET `NAME` = :nom, `MDP` = :pwd WHERE `USERS`.`MAIL` = :mail;'); 
-    $request->bindParam(':nom', $name, PDO::PARAM_STR);
+    $request = $pdo->prepare('UPDATE `USERS` SET `NOM` = :nom, `MDP` = :pwd WHERE `USERS`.`MAIL` = :mail;'); 
+    $request->bindParam(':nom', $nom, PDO::PARAM_STR);
     $request->bindParam(':pwd', $pwd, PDO::PARAM_STR);
     $request->bindParam(':mail', $mail, PDO::PARAM_STR);
     $request->execute();
@@ -103,7 +104,7 @@ function updateUserConnexionData($mail, $nom, $pwd){
     return ['mail' => $mail];
 }
 
-function updateUserPersonalData($mail, $sexe, $age, $poid, $taille, $activite){
+function updateUserPersonalData($mail, $sexe, $age, $poids, $taille, $activite){
     global $pdo;
     
     $request = $pdo->prepare('UPDATE `USERS` SET `SEXE` = :sexe, `AGE` = :age, `POIDS` = :poids, `TAILLE` = :taille, `ACTIVITE` = :activite WHERE `USERS`.`MAIL` = :mail;'); 

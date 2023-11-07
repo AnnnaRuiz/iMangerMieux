@@ -43,6 +43,12 @@
                         </div>
                     </div>
                     <div class="row" style="margin-left: 10px;">
+                        <p>Âge : </p>
+                        <div style="margin-left: 10px;">
+                            <p><?php  echo $age?></p>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-left: 10px;">
                         <p>Poids : </p>
                         <div style="margin-left: 10px;">
                             <p><?php  echo $poids?></p>
@@ -55,9 +61,9 @@
                         </div>
                     </div>
                     <div class="row" style="margin-left: 10px;">
-                        <p>Âge : </p>
+                        <p>Activité : </p>
                         <div style="margin-left: 10px;">
-                            <p><?php  echo $age?></p>
+                            <p><?php  echo $activite?></p>
                         </div>
                     </div>
                     <div class="row m-3">
@@ -106,13 +112,14 @@
 
         // Remplace le bouton "Enregistrer" par un bouton "Modifier"
         userAccountInfo.find("button:contains('Enregistrer')").replaceWith(`<button type="button" class="btn btn-primary ml-auto" onclick="modifyUserAccount(this)">Modifier</button>`);
-    
+        
         $.ajax({
             type: 'PUT',
             url: apiURL + '/users.php',
-            data: { NOM: nouveauNom, MAIL: mail, MDP: nouveauMotDePasse },
+            data: { NOM: nouveauNom, MDP: nouveauMotDePasse },
             success: function(response) {
                 // Gérer la réponse du serveur si nécessaire
+                location.reload();
             },
             error: function(error) {
                 console.error(error);
@@ -126,49 +133,62 @@
     
         // Récupère les éléments d'informations sur l'utilisateur
         let sexe = userInfo.find("p:contains('Sexe')").next("div").text();
+        let age = userInfo.find("p:contains('Âge')").next("div").text();
         let poids = userInfo.find("p:contains('Poids')").next("div").text();
         let taille = userInfo.find("p:contains('Taille')").next("div").text();
-        let age = userInfo.find("p:contains('Âge')").next("div").text();
+        let activite = userInfo.find("p:contains('Activité')").next("div").text();
+
     
         // Remplace les éléments d'informations par des champs de saisie pré-remplis
         userInfo.find("p:contains('Sexe')").next("div").html('<input type="text">');
+        userInfo.find("p:contains('Âge')").next("div").html('<input type="number">');
         userInfo.find("p:contains('Poids')").next("div").html('<input type="number">');
         userInfo.find("p:contains('Taille')").next("div").html('<input type="number">');
-        userInfo.find("p:contains('Âge')").next("div").html('<input type="number">');
+        userInfo.find("p:contains('Activité')").next("div").html('<input type="text">');
+
     
         // Remplace le bouton "Modifier" par un bouton "Enregistrer"
-        userInfo.find("button:contains('Modifier')").replaceWith(`<button type="button" class="btn btn-success ml-auto" onclick="saveUserAccount(this)">Enregistrer</button>`);
+        userInfo.find("button:contains('Modifier')").replaceWith(`<button type="button" class="btn btn-success ml-auto" onclick="saveUserInfo(this)">Enregistrer</button>`);
     }
 
     // Fonction pour enregistrer les informations sur l'utilisateur modifiées
     function saveUserInfo(button) {
         // Sélectionne la zone d'affichage des informations sur l'utilisateur
         let userInfo = $(button).closest(".col-5");
-    
-        // Récupère les nouvelles valeurs
-        let sexe = userInfo.find("input").eq(0).val();
-        let poids = userInfo.find("input").eq(1).val();
-        let taille = userInfo.find("input").eq(2).val();
-        let age = userInfo.find("input").eq(3).val();
-    
-        // Remplace les champs de saisie par les nouvelles valeurs
-        userInfo.find("p").eq(0).text(sexe);
-        userInfo.find("p").eq(1).text(poids + " kg");
-        userInfo.find("p").eq(2).text(taille + " cm");
-        userInfo.find("p").eq(3).text(age + " ans");
-    
-        // Remplace le bouton "Enregistrer" par le bouton "Modifier"
-        userInfo.find("button").text("Modifier").attr("onclick", "modifyUserInfo(this)");
+
+        // Récupère les nouvelles valeurs des champs de saisie
+        let newSexe = userInfo.find("p:contains('Sexe')").next("div").find("input").val();
+        let newAge = userInfo.find("p:contains('Âge')").next("div").find("input").val();
+        let newPoids = userInfo.find("p:contains('Poids')").next("div").find("input").val();
+        let newTaille = userInfo.find("p:contains('Taille')").next("div").find("input").val();
+        let newActivite = userInfo.find("p:contains('Activité')").next("div").find("input").val();
+
+
+        // Une fois que les données sont enregistrées avec succès, vous pouvez
+        // remettre en place les éléments de texte et le bouton "Modifier".
+        userInfo.find("p:contains('Sexe')").next("div").html(newSexe);
+        userInfo.find("p:contains('Âge')").next("div").html(newAge);
+        userInfo.find("p:contains('Poids')").next("div").html(newPoids);
+        userInfo.find("p:contains('Taille')").next("div").html(newTaille);
+        userInfo.find("p:contains('Activité')").next("div").html(newActivite);
+
+
+        // Remplace le bouton "Enregistrer" par un bouton "Modifier"
+        userInfo.find("button:contains('Enregistrer')").replaceWith(`<button type="button" class="btn btn-primary ml-auto" onclick="modifyUserInfo(this)">Modifier</button>`);
     
         // Vous pouvez envoyer les nouvelles valeurs au serveur ici pour les enregistrer
-    
-        // Exemple de requête AJAX pour mettre à jour les données côté serveur
-        // $.ajax({
-        //     type: 'POST',
-        //     url: 'votre_url_de_mise_à_jour.php',
-        //     data: { sexe: sexe, poids: poids, taille: taille, age: age },
-        //     success: function(response) {
-        //         // Gérer la réponse du serveur si nécessaire
-    
+        $.ajax({
+            type: 'PUT',
+            url: apiURL + '/users.php',
+            data: { SEXE: newSexe, AGE: newAge, POIDS: newPoids, TAILLE: newTaille, ACTIVITE: newActivite},
+            success: function(response) {
+                // Gérer la réponse du serveur si nécessaire
+                location.reload();
+            },
+            error: function(error) {
+                console.error(error);
+            }
+        });
+        
     }
 </script>
