@@ -191,11 +191,11 @@ function extractDailyDatas ($mail, $date){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare('
-            SELECT SUM(a.calories * ra.quantite / 100) AS total_daily_calories,
-            SUM(a.lipides * ra.quantite / 100) AS total_daily_lipides,
-            SUM(a.glucides * ra.quantite / 100) AS total_daily_glucides,
-            SUM(a.PROTEINES * ra.quantite / 100) AS total_daily_proteines,
-            SUM(a.SUCRE * ra.quantite / 100) AS total_daily_sucres
+            SELECT ROUND(SUM(a.calories * ra.quantite / 100), 2) AS total_daily_calories,
+            ROUND(SUM(a.lipides * ra.quantite / 100), 2) AS total_daily_lipides,
+            ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_daily_glucides,
+            ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_daily_proteines,
+            ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_daily_sucres
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
@@ -217,11 +217,11 @@ function extractMonthlyDatas ($mail, $date){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare('
-            SELECT SUM(a.calories * ra.quantite / 100) AS total_monthly_calories,
-            SUM(a.lipides * ra.quantite / 100) AS total_monthly_lipides,
-            SUM(a.glucides * ra.quantite / 100) AS total_monthly_glucides,
-            SUM(a.PROTEINES * ra.quantite / 100) AS total_monthly_proteines,
-            SUM(a.SUCRE * ra.quantite / 100) AS total_monthly_sucres
+            SELECT ROUND(SUM(a.calories * ra.quantite / 100), 2) AS total_monthly_calories,
+            ROUND(SUM(a.lipides * ra.quantite / 100), 2) AS total_monthly_lipides,
+            ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_monthly_glucides,
+            ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_monthly_proteines,
+            ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_monthly_sucres
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
@@ -243,11 +243,11 @@ function extractWeeklyDatas ($mail, $date){
     global $pdo;
     if ($pdo !== null) {
         $request = $pdo->prepare('
-            SELECT SUM(a.calories * ra.quantite / 100) AS total_weekly_calories,
-            SUM(a.lipides * ra.quantite / 100) AS total_weekly_lipides,
-            SUM(a.glucides * ra.quantite / 100) AS total_weekly_glucides,
-            SUM(a.PROTEINES * ra.quantite / 100) AS total_weekly_proteines,
-            SUM(a.SUCRE * ra.quantite / 100) AS total_weekly_sucres
+            SELECT ROUND(SUM(a.calories * ra.quantite / 100), 2) AS total_weekly_calories,
+            ROUND(SUM(a.lipides * ra.quantite / 100), 2) AS total_weekly_lipides,
+            ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_weekly_glucides,
+            ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_weekly_proteines,
+            ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_weekly_sucres
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment

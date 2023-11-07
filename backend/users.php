@@ -57,7 +57,7 @@ switch($_SERVER["REQUEST_METHOD"]){
     case 'PUT':
         parse_str(file_get_contents("php://input"), $putData);
     
-        if(isset($putData['NOM']) && isset($putData['MAIL'])){
+        if(isset($putData['NOM']) && isset($putData['MDP'])){
             $_SESSION['nom'] = $putData['NOM'];
             $_SESSION['mdp'] = $putData['MDP'];
             
