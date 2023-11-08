@@ -54,6 +54,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response) {
                     let user = JSON.parse(response);
+                    reinitialiseAllCookies();
                     setCookie('sexe',user[0].SEXE);
                     setCookie('taille',user[0].TAILLE);
                     setCookie('poids',user[0].POIDS);
@@ -82,4 +83,12 @@ function setCookie(name, value) {
         expires = "; expires=" + date.toUTCString();
     }
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
+}
+
+function reinitialiseAllCookies() {
+    let listCookies = ['dailySucres', 'dailyCalories', 'dailyLipides', 'dailyGlucides', 'dailyProteines'];
+
+    for (let name of listCookies) {
+       setCookie(name, 0);
+    }
 }

@@ -15,7 +15,7 @@ $(document).ready(function() {
                 var activite = getCookie('activite');
             
                 var dailyData = response.dailyData[0];
-                //console.log("calories : " + dailyData.total_daily_calories);
+                console.log("calories : " + dailyData.total_daily_calories);
                 var weeklyData = response.weeklyData;
                 var monthlyData = response.monthlyData;
  
