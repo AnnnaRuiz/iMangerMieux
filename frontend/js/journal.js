@@ -24,16 +24,16 @@ $(document).ready(function() {
 
                 let dailyCalories = (dailyData.total_daily_calories * 100 / metabolisme).toFixed(2);
                 setCookie('dailyCalories', dailyCalories);
-                let dailySucres = (dailyData.total_daily_sucres * 100 / metabolisme) * 10;
+                let dailySucres = ((dailyData.total_daily_sucres * 100 / metabolisme) * 10).toFixed(2);
                 setCookie('dailySucres', dailySucres);
 
                 let lip_prot_glu = (dailyData.total_daily_lipides*9) + (dailyData.total_daily_glucides*4) + (dailyData.total_daily_proteines*4);
                 
-                let dailyLipides = (dailyData.total_daily_lipides * 9 / lip_prot_glu)*100;
+                let dailyLipides = ((dailyData.total_daily_lipides * 9 / lip_prot_glu)*100).toFixed(2);
                 setCookie('dailyLipides', dailyLipides);
-                let dailyGlucides = (dailyData.total_daily_glucides * 4 / lip_prot_glu)*100;
+                let dailyGlucides = ((dailyData.total_daily_glucides * 4 / lip_prot_glu)*100).toFixed(2);
                 setCookie('dailyGlucides', dailyGlucides);
-                let dailyProteines = (dailyData.total_daily_proteines * 4 / lip_prot_glu)*100;
+                let dailyProteines = ((dailyData.total_daily_proteines * 4 / lip_prot_glu)*100).toFixed(2);
                 setCookie('dailyProteines', dailyProteines);
 
                 location.reload();
