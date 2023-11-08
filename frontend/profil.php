@@ -140,11 +140,17 @@
 
     
         // Remplace les éléments d'informations par des champs de saisie pré-remplis
-        userInfo.find("p:contains('Sexe')").next("div").html('<input type="text">');
-        userInfo.find("p:contains('Âge')").next("div").html('<input type="number">');
-        userInfo.find("p:contains('Poids')").next("div").html('<input type="number">');
-        userInfo.find("p:contains('Taille')").next("div").html('<input type="number">');
-        userInfo.find("p:contains('Activité')").next("div").html('<input type="text">');
+        userInfo.find("p:contains('Sexe')").next("div").html('<input type="text" placeholder="Votre sexe (M ou F)">');
+        userInfo.find("p:contains('Âge')").next("div").html('<input type="number" class="form-control" id="inputAge" min="0" placeholder="Votre âge" >');
+        userInfo.find("p:contains('Poids')").next("div").html('<input type="number" class="form-control"  step="0.1" id="inputPoids" min="0" placeholder="Votre poids" >');
+        userInfo.find("p:contains('Taille')").next("div").html('<input type="number" class="form-control" id="inputTaille" min="0" placeholder="Votre taille" >');
+        userInfo.find("p:contains('Activité')").next("div").html(`<select id="inputActivite" >
+                        <option value="Sédentaire">Sédentaire (peu ou pas d'exercice)</option>
+                        <option value="Très peu actif">Très peu actif (exercice léger 1-3j /semaine)</option>
+                        <option value="Peu actif">Peu actif (exercice modéré 3-5j /semaine)</option>
+                        <option value="Actif">Actif (exercice intense 6-7j /semaine)</option>
+                        <option value="Très actif">Très actif (exercice journalier trsè intense)</option>
+                    </select>`);
 
     
         // Remplace le bouton "Modifier" par un bouton "Enregistrer"
@@ -161,7 +167,7 @@
         let newAge = userInfo.find("p:contains('Âge')").next("div").find("input").val();
         let newPoids = userInfo.find("p:contains('Poids')").next("div").find("input").val();
         let newTaille = userInfo.find("p:contains('Taille')").next("div").find("input").val();
-        let newActivite = userInfo.find("p:contains('Activité')").next("div").find("input").val();
+        let newActivite = userInfo.find("p:contains('Activité')").next("div").find("select").val();
 
 
         // Une fois que les données sont enregistrées avec succès, vous pouvez
