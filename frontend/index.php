@@ -12,7 +12,7 @@
         //     foreach($cookies as $cookie) {
         //         $parts = explode('=', $cookie);
         //         $nom = trim($parts[0]);
-        //         setcookie($nom, '', time()-3600); // Définir une date d'expiration dans le passé pour supprimer le cookie
+        //         setcookie($nom, '', time()-(24*60*60*1000)); // Définir une date d'expiration dans le passé pour supprimer le cookie
         //     }
         // }
 
