@@ -14,7 +14,9 @@
     echo '<nav class="menu color">
              <ul class="row">
                 <br>
-                <div class="col"><img style="height: 50px" src="images/iMM.png"></div>';
+                <a href="index.php?page=accueil">
+                    <div class="col"><img style="height: 50px" src="images/iMM.png" alt="iMM Logo">
+                    </div></a>';
 
     foreach($mymenu as $pageId => $pageParameters) {
         echo '<li class="col list-unstyled">';

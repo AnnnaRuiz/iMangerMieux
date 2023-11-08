@@ -24,7 +24,7 @@
                         </div>
                     </div>
                     <div class="row" style="margin-left: 10px;">
-                    <p class="border rounded d-inline-flex"> Mot de passe </p>
+                        <p class="border rounded d-inline-flex"> Mot de passe </p>
                         <div style="margin-left: 10px;">
                             <p><?php echo '****'?></p>
                         </div>
@@ -94,7 +94,6 @@
         userAccountInfo.find("button:contains('Modifier')").replaceWith(`<button type="button" class="btn btn-success ml-auto" onclick="saveUserAccount(this)">Enregistrer</button>`);
     }
 
-    
     function saveUserAccount(button) {
         // Sélectionne la zone d'affichage des données de connexion
         let userAccountInfo = $(button).closest(".col-5");
@@ -157,7 +156,6 @@
         userInfo.find("button:contains('Modifier')").replaceWith(`<button type="button" class="btn btn-success ml-auto" onclick="saveUserInfo(this)">Enregistrer</button>`);
     }
 
-    // Fonction pour enregistrer les informations sur l'utilisateur modifiées
     function saveUserInfo(button) {
         // Sélectionne la zone d'affichage des informations sur l'utilisateur
         let userInfo = $(button).closest(".col-5");
