@@ -8,9 +8,10 @@ if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($
 }
 
 ?>
-
-    <button type="button" class="btn btn-primary" id="miseAJourDatas">Actualiser les données</button>
-
+    <div class="row justify-content-center">
+        <button type="button" class="btn btn-primary" id="miseAJourDatas">Actualiser les données</button>
+    </div>
+    
     <hr>
 
     <h1 class="text-center mb-5">Statistiques du jour</h1>
