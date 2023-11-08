@@ -5,17 +5,6 @@
     session_start();
 
     if(isset($_GET['deconnexion'])) {
-        
-        // //Détruire tous les cookies : NE FONCTIONNE PAS
-        // if(isset($_SERVER['HTTP_COOKIE'])) {
-        //     $cookies = explode(';', $_SERVER['HTTP_COOKIE']);
-        //     foreach($cookies as $cookie) {
-        //         $parts = explode('=', $cookie);
-        //         $nom = trim($parts[0]);
-        //         setcookie($nom, '', time()-(24*60*60*1000)); // Définir une date d'expiration dans le passé pour supprimer le cookie
-        //     }
-        // }
-
         session_unset();
         session_destroy();
         unset($_GET['deconnexion']);

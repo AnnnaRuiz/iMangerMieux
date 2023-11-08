@@ -54,7 +54,7 @@ $(document).ready(function() {
             success: function(response) {
                 if (response) {
                     let user = JSON.parse(response);
-                    deleteAllCookies();
+                    reinitialiseAllCookies();
                     setCookie('sexe',user[0].SEXE);
                     setCookie('taille',user[0].TAILLE);
                     setCookie('poids',user[0].POIDS);
@@ -85,13 +85,10 @@ function setCookie(name, value) {
     document.cookie = name + "=" + (value || "") + expires + "; path=/";
 }
 
-function deleteAllCookies() {
+function reinitialiseAllCookies() {
     let listCookies = ['dailySucres', 'dailyCalories', 'dailyLipides', 'dailyGlucides', 'dailyProteines'];
 
-    for (var i = 0; i < cookies.length; i++) {
-        var cookie = cookies[i];
-        var eqPos = cookie.indexOf("=");
-        var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-        document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+    for (let name of listCookies) {
+       setCookie(name, 0);
     }
 }
