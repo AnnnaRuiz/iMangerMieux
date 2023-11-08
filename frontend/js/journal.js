@@ -22,7 +22,7 @@ $(document).ready(function() {
                 let metabolisme = MB(sexe, taille, poids, age, activite);
                 //console.log("metabolisme : " + metabolisme);
 
-                let dailyCalories = dailyData.total_daily_calories * 100 / metabolisme;
+                let dailyCalories = (dailyData.total_daily_calories * 100 / metabolisme).toFixed(2);
                 setCookie('dailyCalories', dailyCalories);
                 let dailySucres = (dailyData.total_daily_sucres * 100 / metabolisme) * 10;
                 setCookie('dailySucres', dailySucres);
