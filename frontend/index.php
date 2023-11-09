@@ -50,7 +50,7 @@
 <body>
 
 <?php
-    $currentPageId = 'accueil';
+    $currentPageId = 'debuter';
     if(isset($_GET['page'])){
         $currentPageId=$_GET['page'];
     }
@@ -65,7 +65,8 @@
                 <div class="col-6 text-right">
                     <a href="index.php?deconnexion">Déconnexion</a>
                 </div>
-            </div>';
+            </div>
+            <hr>';
 
         $pageToInclude = $currentPageId . ".php";
 
