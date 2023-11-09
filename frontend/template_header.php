@@ -16,6 +16,7 @@
     <script src="js/repas.js"></script>
     <script src="js/journal.js"></script>
     <script src="js/profil.js"></script>
+    <script src="js/accueil.js"></script>
 
     <title>iMM</title>
 </head>
