@@ -15,17 +15,18 @@ $(document).ready(function() {
                 var activite = getCookie('activite');
             
                 var dailyData = response.dailyData[0];
-                console.log("calories : " + dailyData.total_daily_calories);
+                //console.log("sucre : " + dailyData.total_daily_sucres);
                 var weeklyData = response.weeklyData[0];
                 var monthlyData = response.monthlyData[0];
  
                 let metabolisme = MB(sexe, taille, poids, age, activite);
+                setCookie('metabolisme', metabolisme);
                 //console.log("metabolisme : " + metabolisme);
 
                 //cookies pour les stats du jour
                 let dailyCalories = (dailyData.total_daily_calories * 100 / metabolisme).toFixed(2);
                 setCookie('dailyCalories', dailyCalories);
-                let dailySucres = ((dailyData.total_daily_sucres * 100 / metabolisme) * 10).toFixed(2);
+                let dailySucres = ((dailyData.total_daily_sucres * 4 / metabolisme) * 100 * 10).toFixed(2);
                 setCookie('dailySucres', dailySucres);
 
                 let lip_prot_glu = (dailyData.total_daily_lipides*9) + (dailyData.total_daily_glucides*4) + (dailyData.total_daily_proteines*4);

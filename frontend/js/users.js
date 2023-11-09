@@ -86,7 +86,7 @@ function setCookie(name, value) {
 }
 
 function reinitialiseAllCookies() {
-    let listCookies = ['dailySucres', 'dailyCalories', 'dailyLipides', 'dailyGlucides', 'dailyProteines'];
+    let listCookies = ['dailySucres', 'dailyCalories', 'dailyLipides', 'dailyGlucides', 'dailyProteines', 'metabolisme'];
 
     for (let name of listCookies) {
        setCookie(name, 0);

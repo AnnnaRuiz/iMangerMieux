@@ -22,10 +22,13 @@ if($IMC<18.5){
     $trancheIMC="Obésité de classe 3 (très sévère ou morbide)";
 }
 
-if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($_COOKIE['dailyLipides']) && isset($_COOKIE['dailyGlucides']) && isset($_COOKIE['dailyProteines'])) {
+if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($_COOKIE['metabolisme'])) {
     $dailyCalories = $_COOKIE['dailyCalories'];
     $dailySucres = $_COOKIE['dailySucres'];
+    $metabolisme = $_COOKIE['metabolisme'];
 }
+
+$qteSucre_recommande = $metabolisme * 10 / 400 ;
 
 
 ?>
@@ -41,16 +44,28 @@ if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($
         <p>Consultez l'analyse des calories et des nutriments, comparez les portions, et apprenez comment les aliments que vous consommez contribuent à vos objectifs de bien-être.</p>
     </div>
 </div>
-
-<div class="container d-flex justify-content-center my-3">
-    <div class="row border border-dark rounded bg-light ">
-        <div class="col-12 text-center">
-                <h3> Votre IMC : <?php echo $IMC?></h3>
-                <p class="<?php echo $danger?>"><?php echo $trancheIMC?></p>
+<div class="row justify-content-center">
+    <div class="container d-flex  my-3">
+        <div class="col-4 border border-dark rounded bg-light text-center ">
+            <h3> Calories consommées : <?php $cal = round(($dailyCalories * $metabolisme / 100),1); echo $cal?> kcal / <?php echo round($metabolisme,0)?>kcal</h3>
+            <p> le total est calculé à partir des données de votre profil <p>
         </div>
     </div>
-</div>
 
+    <div class="container d-flex my-3">
+        <div class="col-4 border border-dark rounded bg-light text-center">
+            <h3> Votre IMC : <?php echo $IMC?></h3>
+            <p class="<?php echo $danger?>"><?php echo $trancheIMC?></p>
+        </div>
+    </div>
+
+    <div class="container d-flex my-3">
+        <div class="col-4 border border-dark rounded bg-light text-center">
+            <h3> Sucre consommé : <?php echo round($dailySucres * $metabolisme / 4000,1)?>g / <?php echo round($qteSucre_recommande,0)?>g</h3>
+            <p> le total est basé sur les recommandations de l'OMS et calculé à partir des données de votre profil <p>
+        </div>
+    </div>
+</div class="row">
 <div class="row border m-auto justify-content-center">
     <div class="col-3 mx-5 my-3">
         <h5 class="text-green text-center">Des outils adaptés à vos objectifs</h5>
