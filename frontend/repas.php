@@ -68,7 +68,21 @@
     </form>
     
     <script>
-    var aliment = ["Pomme", "Poire", "Banane", "Cheval"]
+        var aliments;
+        $.ajax({
+            type: 'POST',
+            url: apiURL + '/repas.php',
+            data: {},
+            success: function(response) {
+                aliments= response;
+                console.log("Aliments : " + aliments);
+            },
+
+            error: function(error) {
+                console.error(error);
+            }
+        });
+    // var aliment = ["Pomme", "Poire", "Banane", "Cheval"];
     function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
@@ -165,6 +179,6 @@ document.addEventListener("click", function (e) {
     closeAllLists(e.target);
 });
 }
-autocomplete(document.getElementById("inputAliment"), aliment);
+autocomplete(document.getElementById("inputAliment"), aliments);
 
 </script>

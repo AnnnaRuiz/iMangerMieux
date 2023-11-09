@@ -164,6 +164,16 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     return ['ALIMENT' => $aliment];
 }
 
+function listAlimentRepas(){
+    global $pdo;
+    $request = $pdo->prepare("
+    SELECT ALIMENT FROM ALIMENTS;
+    ");
+    $request->execute();
+    $result = $request->fetchAll(PDO::FETCH_OBJ);
+    return $result;
+}
+
 function deleteRepas($id, $aliment){
     global $pdo;
     $request = $pdo->prepare('DELETE FROM `REPASALIMENT` WHERE `REPAS_ID`=:id AND `ALIMENT`=:aliment;');
@@ -266,4 +276,38 @@ function extractWeeklyDatas ($mail, $date){
     else {
         return null; // Gestion de l'erreur de connexion à la base de données
     }
+}
+
+function numberFruitsLegsThisDay($mail, $date){
+    global $pdo;
+    $request = $pdo->prepare('
+    SELECT COUNT(a.ALIMENT) AS total_daily_fruitslegs
+        FROM Aliments a
+        JOIN RepasAliment ra ON ra.aliment = a.aliment
+        JOIN Repas r ON r.repas_id = ra.repas_id
+        WHERE r.DATE = :date AND r.MAIL = :mail;
+    ');
+    $request->bindParam(':date', $date, PDO::PARAM_STR);
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $request->execute();
+
+    $result = $request->fetchAll(PDO::FETCH_OBJ);
+    return $result;
+}
+
+function numberCalThisDay($mail, $date){
+    global $pdo;
+    $request = $pdo->prepare('
+    SELECT ROUND(SUM(a.calories * ra.quantite / 100), 2) AS total_daily_calories
+        FROM Repas r
+        JOIN RepasAliment ra ON r.repas_id = ra.repas_id
+        JOIN Aliments a ON ra.aliment = a.aliment
+        WHERE r.DATE = :date AND r.MAIL = :mail;
+    ');
+    $request->bindParam(':date', $date, PDO::PARAM_STR);
+    $request->bindParam(':mail', $mail, PDO::PARAM_STR);
+    $request->execute();
+
+    $result = $request->fetchAll(PDO::FETCH_OBJ);
+    return $result;
 }
