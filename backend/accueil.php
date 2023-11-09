@@ -7,12 +7,11 @@ $mail= $_SESSION['mail'];
 switch($_SERVER["REQUEST_METHOD"]){
     
     case 'GET':
-        $result1 = numberFruitsLegsThisDay($mail, $date);
-        $result2 = numberCalThisDay($mail, $date);
+        $result = numberFruitsVegsThisDay($mail, $date);
         header('Content-type: application/json');
         http_response_code(200);
-        echo json_encode(["fruitsLegs" => $result1, "calories" => $result2]);
-        break;
+        exit(json_encode(["fruitsLegs" => $result]));
+
 
     default : 
         http_response_code(501);

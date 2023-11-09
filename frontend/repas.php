@@ -74,7 +74,7 @@
             url: apiURL + '/repas.php',
             data: {},
             success: function(response) {
-                aliments= response;
+                aliments = response;
                 console.log("Aliments : " + aliments);
             },
 

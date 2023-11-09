@@ -1,9 +1,20 @@
 $(document).ready(function() {
 
+    $.ajax({
+        type: 'GET',
+        url: apiURL + '/accueil.php',
+        data: {},
+        success: function(response) {
+            console.log('test:' + response);
+        }
+    });
+
+
+
     $('#miseAJourDatas').click(function() {
 
         $.ajax({
-            type: 'POST',
+            type: 'GET',
             url: apiURL + '/journal.php',
             data: {},
             success: function(response) {
