@@ -21,7 +21,7 @@
     foreach($mymenu as $pageId => $pageParameters) {
         echo '<li class="col list-unstyled">';
         if($pageId == $currentPageId ) {
-            echo '<a id="currentpage" class="text-decoration-none text-white" href="index.php?page='.$pageId.' onclick="reloadPage()">'.$pageParameters[0].'</a>';
+            echo '<a id="currentpage" class="text-decoration-none text-white" onclick="reloadPage()" href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a>';
         
         } else {
             echo '<a class="text-decoration-none text-white" href="index.php?page='.$pageId.'">'.$pageParameters[0].'</a>';

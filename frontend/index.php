@@ -39,6 +39,12 @@
 
     require_once('template_header.php');
     require_once("template_menu.php");
+
+    if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($_COOKIE['metabolisme'])) {
+        $dailyCalories = $_COOKIE['dailyCalories'];
+        $dailySucres = $_COOKIE['dailySucres'];
+        $metabolisme = $_COOKIE['metabolisme'];
+    }
 ?>
 
 <body>

@@ -1,7 +1,4 @@
 $(document).ready(function() {
-
-    // $('#miseAJourDatas').click(function() {
-
         $.ajax({
             type: 'GET',
             url: apiURL + '/journal.php',
@@ -18,7 +15,7 @@ $(document).ready(function() {
                 //console.log("sucre : " + dailyData.total_daily_sucres);
                 var weeklyData = response.weeklyData[0];
                 var monthlyData = response.monthlyData[0];
-                console.log("calories mois : " + monthlyData.total_monthly_calories);
+                //console.log("calories mois : " + monthlyData.total_monthly_calories);
  
                 let metabolisme = MB(sexe, taille, poids, age, activite);
                 setCookie('metabolisme', metabolisme);
@@ -60,7 +57,7 @@ $(document).ready(function() {
 
                 //cookies pour les stats du mois
                 let nbDaysMonth = monthlyData.total_monthly_data;
-                console.log("nbDaysMonth : " + nbDaysMonth);
+                //console.log("nbDaysMonth : " + nbDaysMonth);
                 let monthlyCalories = ((monthlyData.total_monthly_calories/nbDaysMonth) * 100 / metabolisme).toFixed(2);
                 setCookie('monthlyCalories', monthlyCalories);
                 let monthlySucres = (((monthlyData.total_monthly_sucres/nbDaysMonth) * 100 / metabolisme) * 10).toFixed(2);
@@ -75,18 +72,12 @@ $(document).ready(function() {
                 let monthlyProteines = ((monthlyData.total_monthly_proteines * 4 / lip_prot_glu_monthly)*100).toFixed(2);
                 setCookie('monthlyProteines', monthlyProteines);
                 
-      
-
-                //location.reload();
             },
 
             error: function(error) {
                 console.error(error);
             }
         });
-
-    // });
-
 })
 
 function MB(sexe, taille, poids, age, activite){
