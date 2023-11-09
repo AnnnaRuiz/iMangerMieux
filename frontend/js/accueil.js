@@ -8,7 +8,7 @@ $(document).ready(function() {
             var fruitsLegs = response.fruitsLegs[0];
             var nbFruitsLegs = fruitsLegs.total_daily_fruitslegs;
             setCookie('nbFruitsLegs', nbFruitsLegs);
-            console.log('nbFruitsLegs:' + nbFruitsLegs);
+            //console.log('nbFruitsLegs:' + nbFruitsLegs);
         },
 
         error: function(error) {
