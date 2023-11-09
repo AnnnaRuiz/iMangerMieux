@@ -76,7 +76,7 @@ $(document).ready(function() {
                 setCookie('monthlyProteines', monthlyProteines);
                 
       
-                
+
                 //location.reload();
             },
 
@@ -129,4 +129,8 @@ function getCookie(name) {
         if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
     }
     return null;
+}
+
+function reloadPage() {
+    location.reload();
 }
