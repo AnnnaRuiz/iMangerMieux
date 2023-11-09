@@ -47,31 +47,30 @@ $qteSucreRecommande = ($metabolisme * 10) / 400 ;
 </div>
 <div class="row justify-content-center">
     
-        <div class="col-4 border border-dark rounded bg-light text-center ">
-            <h3> Calories consommées : <?php $cal = round(($dailyCalories * $metabolisme / 100),1); echo $cal?> kcal / <?php echo round($metabolisme,0)?>kcal</h3>
-            <p> le total est calculé à partir des données de votre profil <p>
-        </div>
+    <div class="col-6 border border-dark rounded bg-light text-center">
+        <h3> Votre IMC : <?php echo $IMC?></h3>
+        <p class="<?php echo $danger?>"><?php echo $trancheIMC?></p>
+    </div>
+</div class="row">
    
 
-
-        <div class="col-4 border border-dark rounded bg-light text-center">
-            <h3> Votre IMC : <?php echo $IMC?></h3>
-            <p class="<?php echo $danger?>"><?php echo $trancheIMC?></p>
-        </div>
+<div class="row justify-content-center my-3">
+    <div class="col-3 border border-dark rounded bg-light text-center mx-2">
+        <h3> Calories consommées : <?php $cal = round(($dailyCalories * $metabolisme / 100),1); echo $cal?> kcal / <?php echo round($metabolisme,0)?>kcal</h3>
+        <p> le total est calculé à partir des données de votre profil <p>
+    </div>
     
+    <div class="col-3 border border-dark rounded bg-light text-center mx-2">
+        <h3> Sucre consommé : <?php echo round($dailySucres * $metabolisme / 4000,1)?>g / <?php echo round($qteSucreRecommande,0)?>g</h3>
+        <p> le total est basé sur les recommandations de l'OMS et calculé à partir des données de votre profil <p>
+    </div>
 
-
-        <div class="col-4 border border-dark rounded bg-light text-center">
-            <h3> Sucre consommé : <?php echo round($dailySucres * $metabolisme / 4000,1)?>g / <?php echo round($qteSucreRecommande,0)?>g</h3>
-            <p> le total est basé sur les recommandations de l'OMS et calculé à partir des données de votre profil <p>
-        </div>
-
-        <div class="col-4 border border-dark rounded bg-light text-center">
-            <h3> Fruits et légumes consommés : <?php echo $nbFruitsLegs?>/5</h3>
-            <p> le total est basé sur les recommandations de l'OMS et calculé à partir des données de votre profil <p>
-        </div>
-  
+    <div class="col-3 border border-dark rounded bg-light text-center mx-2">
+        <h3> Fruits et légumes consommés ce jour : <?php echo $nbFruitsLegs?>/5</h3>
+        <p> d'après les reommendations du Programme National Nutrition Santé (PNNS) <p>
+    </div> 
 </div class="row">
+
 <div class="row border m-auto justify-content-center">
     <div class="col-3 mx-5 my-3">
         <h5 class="text-green text-center">Des outils adaptés à vos objectifs</h5>
