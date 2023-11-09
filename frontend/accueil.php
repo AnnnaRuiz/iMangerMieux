@@ -35,11 +35,27 @@ if($IMC<18.5){
     </div>
 </div>
 
-<div class="container d-flex justify-content-center my-3">
-    <div class="row border border-dark rounded bg-light ">
-        <div class="col-12 text-center">
-                <h3> Votre IMC : <?php echo $IMC?></h3>
-                <p class="<?php echo $danger?>"><?php echo $trancheIMC?></p>
+<div class="row m-auto justify-content-center">
+    <div class="col-3 mx-5 my-3">
+        <div class="row border border-dark rounded bg-light ">
+            <div class="mx-5 my-3 text-center">
+                    <h3> Nombre de fruit et légumes mangés aujourd'hui : <?php echo $IMC?></h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-3 mx-5 my-3">
+        <div class="row border border-dark rounded bg-light text-center">
+            <div class="mx-5 my-3">
+                    <h3> Votre IMC : <?php echo $IMC?></h3>
+                    <p class="<?php echo $danger?>"><?php echo $trancheIMC?></p>
+            </div>
+        </div>
+    </div>
+    <div class="col-3 mx-5 my-3">
+        <div class="row border border-dark rounded bg-light ">
+            <div class="mx-5 my-3 text-center">
+                    <h3> Nombre de calories aujourd'hui : <?php echo $IMC?> sur <?php echo 'x'?></h3>
+            </div>
         </div>
     </div>
 </div>
