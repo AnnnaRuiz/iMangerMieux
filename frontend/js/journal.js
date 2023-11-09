@@ -1,16 +1,5 @@
 $(document).ready(function() {
 
-    $.ajax({
-        type: 'GET',
-        url: apiURL + '/accueil.php',
-        data: {},
-        success: function(response) {
-            console.log('test:' + response);
-        }
-    });
-
-
-
     $('#miseAJourDatas').click(function() {
 
         $.ajax({
@@ -29,6 +18,7 @@ $(document).ready(function() {
                 //console.log("sucre : " + dailyData.total_daily_sucres);
                 var weeklyData = response.weeklyData[0];
                 var monthlyData = response.monthlyData[0];
+                console.log("calories mois : " + monthlyData.total_monthly_calories);
  
                 let metabolisme = MB(sexe, taille, poids, age, activite);
                 setCookie('metabolisme', metabolisme);
@@ -50,12 +40,13 @@ $(document).ready(function() {
                 setCookie('dailyProteines', dailyProteines);
 
                 //cookies pour les stats de la semaine 
-                let weeklyCalories = (weeklyData.total_weekly_calories * 100 / metabolisme).toFixed(2);
+                let nbDaysWeek = weeklyData.total_weekly_data;
+                let weeklyCalories = ((weeklyData.total_weekly_calories/nbDaysWeek) * 100 / metabolisme).toFixed(2);
                 setCookie('weeklyCalories', weeklyCalories);
-                let weeklySucres = ((weeklyData.total_weekly_sucres * 100 / metabolisme) * 10).toFixed(2);
+                let weeklySucres = (((weeklyData.total_weekly_sucres/nbDaysWeek) * 100 / metabolisme) * 10).toFixed(2);
                 setCookie('weeklySucres', weeklySucres);
 
-                let lip_prot_glu_weekly = (weeklyData.total_weekly_lipides*9) + (weeklyData.total_weekly_glucides*4) + (dailyData.total_weekly_proteines*4);
+                let lip_prot_glu_weekly = (weeklyData.total_weekly_lipides*9) + (weeklyData.total_weekly_glucides*4) + (weeklyData.total_weekly_proteines*4);
                 
                 let weeklyLipides = ((weeklyData.total_weekly_lipides * 9 / lip_prot_glu_weekly)*100).toFixed(2);
                 setCookie('weeklyLipides', weeklyLipides);
@@ -63,24 +54,30 @@ $(document).ready(function() {
                 setCookie('weeklyGlucides', weeklyGlucides);
                 let weeklyProteines = ((weeklyData.total_weekly_proteines * 4 / lip_prot_glu_weekly)*100).toFixed(2);
                 setCookie('weeklyProteines', weeklyProteines);
+                
+          
 
 
                 //cookies pour les stats du mois
-                let monthlyCalories = (monthlyData.total_monthly_calories * 100 / metabolisme).toFixed(2);
+                let nbDaysMonth = monthlyData.total_monthly_data;
+                console.log("nbDaysMonth : " + nbDaysMonth);
+                let monthlyCalories = ((monthlyData.total_monthly_calories/nbDaysMonth) * 100 / metabolisme).toFixed(2);
                 setCookie('monthlyCalories', monthlyCalories);
-                let monthlySucres = ((monthlyData.total_monthly_sucres * 100 / metabolisme) * 10).toFixed(2);
+                let monthlySucres = (((monthlyData.total_monthly_sucres/nbDaysMonth) * 100 / metabolisme) * 10).toFixed(2);
                 setCookie('monthlySucres', monthlySucres);
 
                 let lip_prot_glu_monthly = (monthlyData.total_monthly_lipides*9) + (monthlyData.total_monthly_glucides*4) + (monthlyData.total_monthly_proteines*4);
                 
-                let monthlyLipides = ((dailyData.total_daily_lipides * 9 / lip_prot_glu_monthly)*100).toFixed(2);
+                let monthlyLipides = ((monthlyData.total_monthly_lipides * 9 / lip_prot_glu_monthly)*100).toFixed(2);
                 setCookie('monthlyLipides', monthlyLipides);
                 let monthlyGlucides = ((monthlyData.total_monthly_glucides * 4 / lip_prot_glu_monthly)*100).toFixed(2);
                 setCookie('monthlyGlucides', monthlyGlucides);
                 let monthlyProteines = ((monthlyData.total_monthly_proteines * 4 / lip_prot_glu_monthly)*100).toFixed(2);
                 setCookie('monthlyProteines', monthlyProteines);
+                
+      
 
-                location.reload();
+                //location.reload();
             },
 
             error: function(error) {

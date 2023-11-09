@@ -123,21 +123,3 @@ if(isset($_COOKIE['monthlyCalories']) && isset($_COOKIE['monthlySucres']) && iss
 
 
     <hr>
-
-
-<?php
-
-// function statistics($tmp){
-//     define('Calories', 'Calories');
-//     echo "
-//     <div class='row justify-content-center'>
-//         <h4>Calories consommées par rapport au total recommandé calculé d'après votre profil :</h4>
-//         <div class='col-9 progress'>
-//             <div class='progress-bar' role='progressbar' style='width:". $tmp.Calories."' aria-valuenow='".$tmp.Calories."' aria-valuemin='0' aria-valuemax='100'>".$tmp.Calories."%</div>
-//         </div>
-//     </div>
-//     ";
-// }
-
-
-?>
