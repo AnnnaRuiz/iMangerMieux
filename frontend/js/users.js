@@ -61,6 +61,7 @@ $(document).ready(function() {
                     setCookie('age',user[0].AGE);
                     setCookie('activite',user[0].ACTIVITE);
                     window.location.href = 'index.php';
+
                 } else {
                     console.error(response.error);
                 }
@@ -86,9 +87,10 @@ function setCookie(name, value) {
 }
 
 function reinitialiseAllCookies() {
-    let listCookies = ['dailySucres', 'dailyCalories', 'dailyLipides', 'dailyGlucides', 'dailyProteines', 'metabolisme'];
+    let listCookies = ['dailySucres', 'dailyCalories', 'dailyLipides', 'dailyGlucides', 'dailyProteines', 'dailySucres', 'weeklyCalories', 'weeklyLipides', 'weeklyGlucides', 'weeklyProteines', 'weeklySucres', 'monthlyCalories', 'monthlyLipides', 'monthlyGlucides', 'monthlyProteines', 'metabolisme'];
 
     for (let name of listCookies) {
        setCookie(name, 0);
     }
 }
+
