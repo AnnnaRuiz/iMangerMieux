@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    $('#miseAJourDatas').click(function() {
+    // $('#miseAJourDatas').click(function() {
 
         $.ajax({
             type: 'GET',
@@ -76,7 +76,7 @@ $(document).ready(function() {
                 setCookie('monthlyProteines', monthlyProteines);
                 
       
-
+                
                 //location.reload();
             },
 
@@ -85,7 +85,7 @@ $(document).ready(function() {
             }
         });
 
-    });
+    // });
 
 })
 

@@ -5,7 +5,8 @@ $(document).ready(function() {
         url: apiURL + '/accueil.php',
         data: {},
         success: function(response) {
-            console.log('test:' + response);
+            let test=response.fruitsLegs[0];
+            console.log('test:' + test);
         },
 
         error: function(error) {
