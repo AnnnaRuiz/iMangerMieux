@@ -74,7 +74,9 @@
             url: apiURL + '/repas.php',
             data: {},
             success: function(response) {
-                aliments = response;
+                aliments = response.map(function(item) {
+                    return item.ALIMENT;
+                });
                 console.log("Aliments : " + aliments);
             },
 
@@ -82,7 +84,7 @@
                 console.error(error);
             }
         });
-    // var aliment = ["Pomme", "Poire", "Banane", "Cheval"];
+    var aliment = ["Pomme", "Poire", "Banane", "Cheval"];
     function autocomplete(inp, arr) {
   /*the autocomplete function takes two arguments,
   the text field element and an array of possible autocompleted values:*/
