@@ -11,24 +11,30 @@ switch($_SERVER["REQUEST_METHOD"]){
         exit(json_encode($result));
     
     case 'POST':
-        $mail = $_SESSION['mail'];
-        $date = $_POST['DATE'];
-        $type_repas = $_POST['TYPE_REPAS'];
-        $aliment = $_POST['ALIMENT'];
-        $quantite = $_POST['QUANTITE'];
-        $item = createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite);
+        if(isset($_POST['REPAS_ID']) && isset($_POST['DATE']) && isset($_POST['TYPE_REPAS']) && isset($_POST['ALIMENT']) && isset($_POST['QUANTITE'])){
+            $mail = $_SESSION['mail'];
+            $date = $_POST['DATE'];
+            $type_repas = $_POST['TYPE_REPAS'];
+            $aliment = $_POST['ALIMENT'];
+            $quantite = $_POST['QUANTITE'];
+            $item = createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite);
 
-        if ($item != null) {
-                
-            http_response_code(201); // Code 201 created 
-            header('Content-Type: application/json');
-            exit(json_encode($item));
+            if ($item != null) {
+                    
+                http_response_code(201); // Code 201 created 
+                header('Content-Type: application/json');
+                exit(json_encode($item));
+            }
+            else {
+                // Erreur lors de la création de l'aliment
+                http_response_code(500); // Code d'erreur 500 Internal Server Error
+                exit(json_encode(["message" => "Erreur lors de la création du repas"]));
+            }
         }
-        else {
-            // Erreur lors de la création de l'aliment
-            http_response_code(500); // Code d'erreur 500 Internal Server Error
-            exit(json_encode(["message" => "Erreur lors de la création du repas"]));
+        else{
+            exit(json_encode(["message" => "Erreur xxx"]));
         }
+        
 
     case 'DELETE':
         parse_str(file_get_contents("php://input"), $deleteData);
