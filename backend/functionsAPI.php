@@ -164,6 +164,16 @@ function createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite){
     return ['ALIMENT' => $aliment];
 }
 
+function listAlimentRepas(){
+    global $pdo;
+    $request = $pdo->prepare("
+    SELECT ALIMENT FROM ALIMENTS;
+    ");
+    $request->execute();
+    $result = $request->fetchAll(PDO::FETCH_OBJ);
+    return $result;
+}
+
 function deleteRepas($id, $aliment){
     global $pdo;
     $request = $pdo->prepare('DELETE FROM `REPASALIMENT` WHERE `REPAS_ID`=:id AND `ALIMENT`=:aliment;');
