@@ -233,7 +233,7 @@ function extractMonthlyDatas ($mail, $date){
             ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_monthly_glucides,
             ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_monthly_proteines,
             ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_monthly_sucres,
-            COUNT(DATE) AS total_monthly_data
+            COUNT(DISTINCT DATE) AS total_monthly_data
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
@@ -260,7 +260,7 @@ function extractWeeklyDatas ($mail, $date){
             ROUND(SUM(a.glucides * ra.quantite / 100), 2) AS total_weekly_glucides,
             ROUND(SUM(a.PROTEINES * ra.quantite / 100), 2) AS total_weekly_proteines,
             ROUND(SUM(a.SUCRE * ra.quantite / 100), 2) AS total_weekly_sucres,
-            COUNT(DATE) AS total_weekly_data
+            COUNT(DISTINCT DATE) AS total_weekly_data
             FROM Repas r
             JOIN RepasAliment ra ON r.repas_id = ra.repas_id
             JOIN Aliments a ON ra.aliment = a.aliment
