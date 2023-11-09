@@ -5,8 +5,10 @@ $(document).ready(function() {
         url: apiURL + '/accueil.php',
         data: {},
         success: function(response) {
-            let test=response.fruitsLegs[0];
-            console.log('test:' + test);
+            var fruitsLegs = response.fruitsLegs[0];
+            var nbFruitsLegs = fruitsLegs.total_daily_fruitslegs;
+            setCookie('nbFruitsLegs', nbFruitsLegs);
+            console.log('nbFruitsLegs:' + nbFruitsLegs);
         },
 
         error: function(error) {

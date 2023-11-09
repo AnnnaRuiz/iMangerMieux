@@ -22,10 +22,11 @@ if($IMC<18.5){
     $trancheIMC="Obésité de classe 3 (très sévère ou morbide)";
 }
 
-if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($_COOKIE['metabolisme'])) {
+if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($_COOKIE['metabolisme']) && isset($_COOKIE['nbFruitsLegs'])) {
     $dailyCalories = $_COOKIE['dailyCalories'];
     $dailySucres = $_COOKIE['dailySucres'];
     $metabolisme = $_COOKIE['metabolisme'];
+    $nbFruitsLegs = $_COOKIE['nbFruitsLegs'];
 }
 
 $qteSucreRecommande = ($metabolisme * 10) / 400 ;
@@ -62,6 +63,11 @@ $qteSucreRecommande = ($metabolisme * 10) / 400 ;
 
         <div class="col-4 border border-dark rounded bg-light text-center">
             <h3> Sucre consommé : <?php echo round($dailySucres * $metabolisme / 4000,1)?>g / <?php echo round($qteSucreRecommande,0)?>g</h3>
+            <p> le total est basé sur les recommandations de l'OMS et calculé à partir des données de votre profil <p>
+        </div>
+
+        <div class="col-4 border border-dark rounded bg-light text-center">
+            <h3> Fruits et légumes consommés : <?php echo $nbFruitsLegs?>/5</h3>
             <p> le total est basé sur les recommandations de l'OMS et calculé à partir des données de votre profil <p>
         </div>
   
