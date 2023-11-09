@@ -21,6 +21,13 @@ if($IMC<18.5){
 }elseif (40<=$IMC ){
     $trancheIMC="Obésité de classe 3 (très sévère ou morbide)";
 }
+
+if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($_COOKIE['dailyLipides']) && isset($_COOKIE['dailyGlucides']) && isset($_COOKIE['dailyProteines'])) {
+    $dailyCalories = $_COOKIE['dailyCalories'];
+    $dailySucres = $_COOKIE['dailySucres'];
+}
+
+
 ?>
 
 

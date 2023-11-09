@@ -11,7 +11,7 @@ if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($
     <div class="row justify-content-center">
         <button type="button" class="btn btn-primary" id="miseAJourDatas">Actualiser les données</button>
     </div>
-    
+
     <hr>
 
     <h1 class="text-center mb-5">Statistiques du jour</h1>
@@ -46,14 +46,14 @@ if(isset($_COOKIE['dailyCalories']) && isset($_COOKIE['dailySucres']) && isset($
     <hr>
 
 
-    <h1 class="text-center mb-5">Statistiques hebdomadaire</h1>
+    <h1 class="text-center mb-5">Statistiques hebdomadaires</h1>
     <?php //statistics($tmp='weekly'); ?>
 
 
     <hr>
 
 
-    <h1 class="text-center mb-5">Statistiques mensuel</h1>
+    <h1 class="text-center mb-5">Statistiques mensuelles</h1>
     <?php //statistics($tmp='monthly'); ?>
 
 
