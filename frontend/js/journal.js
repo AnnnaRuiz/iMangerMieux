@@ -38,6 +38,7 @@ $(document).ready(function() {
 
                 //cookies pour les stats de la semaine 
                 let nbDaysWeek = weeklyData.total_weekly_data;
+                setCookie('total_weekly_data', nbDaysWeek);
                 let weeklyCalories = ((weeklyData.total_weekly_calories/nbDaysWeek) * 100 / metabolisme).toFixed(2);
                 setCookie('weeklyCalories', weeklyCalories);
                 let weeklySucres = (((weeklyData.total_weekly_sucres/nbDaysWeek) * 100 / metabolisme) * 10).toFixed(2);
@@ -57,6 +58,7 @@ $(document).ready(function() {
 
                 //cookies pour les stats du mois
                 let nbDaysMonth = monthlyData.total_monthly_data;
+                setCookie('total_monthly_data', nbDaysMonth);
                 //console.log("nbDaysMonth : " + nbDaysMonth);
                 let monthlyCalories = ((monthlyData.total_monthly_calories/nbDaysMonth) * 100 / metabolisme).toFixed(2);
                 setCookie('monthlyCalories', monthlyCalories);

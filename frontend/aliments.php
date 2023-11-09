@@ -1,5 +1,5 @@
 
-    <h1 class="text-center">Taleau des aliments</h1>
+    <h1 class="text-center">Tableau des aliments</h1>
     <br>
     <table id="food" class="display table center">
         <thead>
