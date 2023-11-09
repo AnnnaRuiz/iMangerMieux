@@ -48,7 +48,7 @@
         <div class="form-group row">
             <label for="inputAliment" class="col-sm-3 col-form-label text-right">Ajoutez un aliment</label>
             <div class="autocomplete col-sm-3">
-                <input id="myInput" type="text" name="myCountry" placeholder="Rechercher un aliment">
+                <input id="inputAliment" type="text" name="myCountry" placeholder="Rechercher un aliment">
             </div>
         </div>
 
@@ -165,6 +165,6 @@ document.addEventListener("click", function (e) {
     closeAllLists(e.target);
 });
 }
-autocomplete(document.getElementById("myInput"), aliment);
+autocomplete(document.getElementById("inputAliment"), aliment);
 
 </script>
