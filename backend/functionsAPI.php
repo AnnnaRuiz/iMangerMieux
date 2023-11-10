@@ -299,7 +299,7 @@ function numberFruitsVegsThisDay($mail, $date){
         FROM Aliments a
         JOIN RepasAliment ra ON ra.aliment = a.aliment
         JOIN Repas r ON r.repas_id = ra.repas_id
-        WHERE r.DATE = :date AND r.MAIL = :mail;
+        WHERE r.DATE = :date AND r.MAIL = :mail AND a.CATEGORIE = "Fruits et légumes";
     ');
     $request->bindParam(':date', $date, PDO::PARAM_STR);
     $request->bindParam(':mail', $mail, PDO::PARAM_STR);
