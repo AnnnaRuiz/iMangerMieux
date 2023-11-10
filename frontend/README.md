@@ -1,0 +1,1 @@
+Vous trouverez dans ce dossier toutes les pages visibles par l'utilisateur.
