@@ -37,6 +37,7 @@
                     <option value="Produits laitier">Produits laitiers</option>
                     <option value="Snacks">Snacks</option>
                     <option value="Boissons">Boissons</option>
+                    <option value="Plats cuisinés">Plats cuisinés</option>
                 </select>
             </div>
         </div>

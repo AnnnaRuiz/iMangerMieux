@@ -121,6 +121,7 @@ function deleteRow(button) {
                                         <option value="Produits laitier">Produits laitiers</option>
                                         <option value="Snacks">Snacks</option>
                                         <option value="Boissons">Boissons</option>
+                                        <option value="Plats cuisinés">Plats cuisinés</option>
                                     </select>`);
         row.find('td:eq(2)').html(`<input type="number" step="0.1" min="0" value="${calories}" />`);
         row.find('td:eq(3)').html(`<input type="number" step="0.1" min="0" value="${lipides}" />`);
