@@ -1,6 +1,8 @@
 <?php
 session_start();
+
 require_once('functionsAPI.php');
+
 $date = date("Y-m-d");
 $mail= $_SESSION['mail'];
 

@@ -1,6 +1,8 @@
 <?php
 require_once('init_pdo.php');
 
+//pour aliment.php :
+
 function getAllFood(){
     global $pdo;
     if ($pdo !== null) {
@@ -36,6 +38,7 @@ function deleteFoodItem($nom) {
 
     return $request->rowCount() > 0; // Renvoie true si au moins une ligne a été supprimée, sinon false
 }
+
 function updateFoodItem($nom, $categorie, $calories, $lipides, $glucides, $proteines, $sucre) {
     global $pdo;
     
@@ -52,6 +55,8 @@ function updateFoodItem($nom, $categorie, $calories, $lipides, $glucides, $prote
     return $request->rowCount() > 0 ? ["CATEGORIE" => $categorie, "CALORIES" => $calories, "LIPIDES" => $lipides, "GLUCIDES" => $glucides, "PROTEINES" => $proteines, "SUCRE" => $sucre] : null; // Renvoie les données mises à jour ou null si aucune ligne mise à jour
 
 }
+
+//pour users.php :
 
 function getUser($email, $pwd){
     global $pdo;
@@ -118,6 +123,8 @@ function updateUserPersonalData($mail, $sexe, $age, $poids, $taille, $activite){
 
     return ['mail' => $mail];
 }
+
+//pour repas.php :
 
 function getDailyRepas($email){
     global $pdo;
@@ -198,6 +205,8 @@ function updateRepasItem($repas_id, $aliment, $quantite){
     return ['REPAS_ID' => $repas_id];
 }
 
+//pour journal.php :
+
 function extractDailyDatas ($mail, $date){
     global $pdo;
     if ($pdo !== null) {
@@ -277,6 +286,8 @@ function extractWeeklyDatas ($mail, $date){
         return null; // Gestion de l'erreur de connexion à la base de données
     }
 }
+
+//pour accueil.php :
 
 function numberFruitsVegsThisDay($mail, $date){
     global $pdo;
