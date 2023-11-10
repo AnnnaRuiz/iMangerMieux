@@ -12,6 +12,7 @@ switch($_SERVER["REQUEST_METHOD"]){
             $sexe = $_POST['SEXE'];
             $age = $_POST['AGE'];
             $activite = $_POST['ACTIVITE'];
+
             $user = createUser($name, $mail, $pwd, $taille, $poids, $sexe, $age, $activite);
 
             if ($user) {
@@ -46,7 +47,7 @@ switch($_SERVER["REQUEST_METHOD"]){
                 // header('Content-type: application/json');
                 http_response_code(200);
                 exit(json_encode($result));
-            }else{
+            } else {
                 http_response_code(404);
                 exit(json_encode(["message" => "Utilisateur non trouvé"]));
             }
@@ -70,8 +71,8 @@ switch($_SERVER["REQUEST_METHOD"]){
             http_response_code(200); // Code 200 OK
             header('Content-Type: application/json');
             exit(json_encode($updatedUserCoData));
-        }
-        elseif(isset($putData['SEXE']) && isset($putData['AGE']) && isset($putData['POIDS']) && isset($putData['TAILLE']) && isset($putData['ACTIVITE'])){
+
+        } elseif(isset($putData['SEXE']) && isset($putData['AGE']) && isset($putData['POIDS']) && isset($putData['TAILLE']) && isset($putData['ACTIVITE'])){
             $_SESSION['sexe'] = $putData['SEXE'];
             $_SESSION['age'] = $putData['AGE'];
             $_SESSION['poids'] = $putData['POIDS'];
@@ -82,8 +83,8 @@ switch($_SERVER["REQUEST_METHOD"]){
             http_response_code(200); // Code 200 OK
             header('Content-Type: application/json');
             exit(json_encode($updatedUserCo));
-        } 
-        else {
+            
+        } else {
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit(json_encode(["message" => "Parametres invalides pour la mise a jour des données de l'utilisateur"]));
         }

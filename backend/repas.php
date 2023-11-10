@@ -6,9 +6,14 @@ switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
         $mail= $_SESSION['mail'];
         $result = getDailyRepas($mail);
-        header('Content-type: application/json');
-        http_response_code(200);
-        exit(json_encode($result));
+        if($result!=null){
+            header('Content-type: application/json');
+            http_response_code(200);
+            exit(json_encode($result));
+        } else {
+            http_response_code(404); // Code d'erreur 404 Not Found 
+            exit( json_encode(["message" => "Repas introuvable"]));
+        }
     
     case 'POST':
         if(isset($_POST['REPAS_ID']) && isset($_POST['DATE']) && isset($_POST['TYPE_REPAS']) && isset($_POST['ALIMENT']) && isset($_POST['QUANTITE'])){
@@ -20,26 +25,22 @@ switch($_SERVER["REQUEST_METHOD"]){
             $item = createAlimentRepas($mail, $date, $type_repas, $aliment, $quantite);
 
             if ($item != null) {
-                    
                 http_response_code(201); // Code 201 created 
                 header('Content-Type: application/json');
                 exit(json_encode($item));
-            }
-            else {
+            } else {
                 // Erreur lors de la création de l'aliment
                 http_response_code(500); // Code d'erreur 500 Internal Server Error
                 exit(json_encode(["message" => "Erreur lors de la création du repas"]));
             }
-        }
-        else{
+        } else{
             $result = listAlimentRepas();
             if ($result != null) {
                     
                 http_response_code(201); // Code 201 created 
                 header('Content-Type: application/json');
                 exit(json_encode($result));
-            }
-            else {
+            } else {
                 // Erreur lors de la création de l'aliment
                 http_response_code(500); // Code d'erreur 500 Internal Server Error
                 exit(json_encode(["message" => "Erreur lors du listing des aliments pour le repas"]));
@@ -57,13 +58,11 @@ switch($_SERVER["REQUEST_METHOD"]){
             if ($deleted) {
                 http_response_code(200);
                 exit(json_encode(["message" => "Repas supprimé avec succès"]));
-            }
-            else {
+            } else {
                 http_response_code(500);
                 exit(json_encode(["message" => "Erreur lors de la suppression du repas"]));
             }
-        }
-        else{
+        } else{
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit( json_encode(["message" => "Parametres invalides pour la suppression de l'aliment"]));
         }
@@ -86,8 +85,7 @@ switch($_SERVER["REQUEST_METHOD"]){
                 http_response_code(404); // Code d'erreur 404 Not Found
                 exit(json_encode(["message" => "Aliment non trouve"]));
             }
-        }
-        else {
+        } else {
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit(json_encode(["message" => "Parametres invalides pour la mise a jour de l'aliment"]));
         }

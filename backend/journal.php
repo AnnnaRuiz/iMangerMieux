@@ -6,15 +6,15 @@ $date = date("Y-m-d");
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
         $mail= $_SESSION['mail'];
-        $result1 = extractDailyDatas($mail, $date);
-        $result2 = extractWeeklyDatas ($mail, $date);
-        $result3 = extractMonthlyDatas($mail, $date);
-        if($result1!=null && $result2!=null && $result3!=null){
+        $daily = extractDailyDatas($mail, $date);
+        $weekly = extractWeeklyDatas ($mail, $date);
+        $monthly = extractMonthlyDatas($mail, $date);
+        if($daily!=null && $weekly!=null && $monthly!=null){
             header('Content-type: application/json');
             http_response_code(200);
-            echo json_encode(["dailyData" => $result1, "weeklyData" => $result2, "monthlyData" => $result3]);
+            echo json_encode(["dailyData" => $daily, "weeklyData" => $weekly, "monthlyData" => $monthly]);
             break;
-        }else {
+        } else {
             http_response_code(404); // Code d'erreur 404 Not Found
             exit(json_encode(["message" => "Datas non trouvés"]));
         }

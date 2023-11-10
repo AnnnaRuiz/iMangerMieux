@@ -39,7 +39,6 @@ switch($_SERVER["REQUEST_METHOD"]){
     
         if(isset($deleteData['ALIMENT'])){
             $nom = $deleteData['ALIMENT'];
-    
             $deleted = deleteFoodItem($nom);
     
             if ($deleted) {
