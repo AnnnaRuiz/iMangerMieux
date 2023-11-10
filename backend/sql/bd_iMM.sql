@@ -634,7 +634,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 
 INSERT INTO `users` (`NOM`, `MAIL`, `MDP`, `SEXE`, `AGE`, `POIDS`, `TAILLE`, `ACTIVITE`) VALUES
-('Riri', 'riri@gmail.com', 'fifi', 'M', 20, 70, 180, 'Modéré');
+('Utilisateur test', 'test@test.com', 'test', 'M', 20, 70, 180, 'Peu actif');
 
 --
 -- Contraintes pour les tables déchargées
