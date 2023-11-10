@@ -646,7 +646,26 @@ INSERT INTO `aliments` (`ALIMENT`, `LIPIDES`, `GLUCIDES`, `PROTEINES`, `CALORIES
 ('Gin fizz', 0, 15, 0, 200, 'Boissons', 15),
 ('Mimosa', 0, 5, 0, 80, 'Boissons', 5),
 ('Kir royal', 0, 10, 0, 120, 'Boissons', 10),
-('Rhum arrangé', 0, 20, 0, 230, 'Boissons', 20);
+('Rhum arrangé', 0, 20, 0, 230, 'Boissons', 20),
+('Cookie', 12, 35, 2, 200, 'Snacks', 20),
+('Crêpe', 7, 28, 4, 180, 'Snacks', 10),
+('Quatre-quarts', 18, 40, 6, 300, 'Snacks', 25),
+('Brownie', 15, 30, 3, 250, 'Snacks', 20),
+('Muffin', 10, 25, 4, 200, 'Snacks', 15),
+('Barre chocolatée', 14, 30, 2, 220, 'Snacks', 25),
+('Donut', 15, 35, 2, 250, 'Snacks', 20),
+('Tarte aux fruits', 20, 40, 3, 280, 'Snacks', 30),
+('Éclair', 18, 25, 4, 260, 'Snacks', 20),
+('Pain d épices', 5, 40, 2, 180, 'Snacks', 25),
+('Pancake', 5, 20, 3, 150, 'Snacks', 10),
+('Chausson aux pommes', 12, 30, 3, 220, 'Snacks', 15),
+('Madeleine', 10, 20, 2, 180, 'Snacks', 15),
+('Pain perdu', 8, 30, 4, 220, 'Snacks', 15),
+('Gaufre', 15, 35, 3, 250, 'Snacks', 20),
+('Palmier', 12, 20, 2, 200, 'Snacks', 15),
+('Biscuit sablé', 10, 15, 1, 150, 'Snacks', 10),
+('Cupcake', 15, 30, 3, 250, 'Snacks', 20);
+
 
 -- --------------------------------------------------------
 
