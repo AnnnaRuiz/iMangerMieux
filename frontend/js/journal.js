@@ -12,7 +12,7 @@ $(document).ready(function() {
                 var activite = getCookie('activite');
             
                 var dailyData = response.dailyData[0];
-                //console.log("sucre : " + dailyData.total_daily_sucres);
+                console.log("calories : " + dailyData.total_daily_calories);
                 var weeklyData = response.weeklyData[0];
                 var monthlyData = response.monthlyData[0];
                 //console.log("calories mois : " + monthlyData.total_monthly_calories);
@@ -24,6 +24,7 @@ $(document).ready(function() {
                 //cookies pour les stats du jour
                 let dailyCalories = (dailyData.total_daily_calories * 100 / metabolisme).toFixed(2);
                 setCookie('dailyCalories', dailyCalories);
+                //console.log("dailyCalories : " + dailyCalories);
                 let dailySucres = ((dailyData.total_daily_sucres * 4 / metabolisme) * 100 * 10).toFixed(2);
                 setCookie('dailySucres', dailySucres);
 
@@ -35,21 +36,25 @@ $(document).ready(function() {
                 setCookie('dailyGlucides', dailyGlucides);
                 let dailyProteines = ((dailyData.total_daily_proteines * 4 / lip_prot_glu)*100).toFixed(2);
                 setCookie('dailyProteines', dailyProteines);
+        
+                // console.log("lip_prot_glu : " + lip_prot_glu);
+                // console.log("dailyLipides : " + dailyLipides);
+                // console.log("dailyGlucides : " + dailyGlucides);
+                // console.log("dailyProteines : " + dailyProteines);
 
                 //cookies pour les stats de la semaine 
                 let nbDaysWeek = weeklyData.total_weekly_data;
-                setCookie('total_weekly_data', nbDaysWeek);
-                if(nbDaysWeek!=0){
-                    let weeklyCalories = ((weeklyData.total_weekly_calories/nbDaysWeek) * 100 / metabolisme).toFixed(2);
-                    setCookie('weeklyCalories', weeklyCalories);
-                    let weeklySucres = (((weeklyData.total_weekly_sucres/nbDaysWeek) * 100 / metabolisme) * 10).toFixed(2);
-                    setCookie('weeklySucres', weeklySucres);
-                } else {
-                    setCookie('weeklyCalories', 0);
-                    setCookie('weeklySucres', 0);
+                if(nbDaysWeek==0){
+                    nbDaysWeek=1;
                 }
+                setCookie('total_weekly_data', nbDaysWeek);
+                let weeklyCalories = ((weeklyData.total_weekly_calories/nbDaysWeek) * 100 / metabolisme).toFixed(2);
+                setCookie('weeklyCalories', weeklyCalories);
+                let weeklySucres = (((weeklyData.total_weekly_sucres/nbDaysWeek) * 100 / metabolisme) * 10).toFixed(2);
+                setCookie('weeklySucres', weeklySucres);
+
                 let lip_prot_glu_weekly = (weeklyData.total_weekly_lipides*9) + (weeklyData.total_weekly_glucides*4) + (weeklyData.total_weekly_proteines*4);
-                
+
                 let weeklyLipides = ((weeklyData.total_weekly_lipides * 9 / lip_prot_glu_weekly)*100).toFixed(2);
                 setCookie('weeklyLipides', weeklyLipides);
                 let weeklyGlucides = ((weeklyData.total_weekly_glucides * 4 / lip_prot_glu_weekly)*100).toFixed(2);
@@ -57,31 +62,27 @@ $(document).ready(function() {
                 let weeklyProteines = ((weeklyData.total_weekly_proteines * 4 / lip_prot_glu_weekly)*100).toFixed(2);
                 setCookie('weeklyProteines', weeklyProteines);
                 
-          
-
-
                 //cookies pour les stats du mois
                 let nbDaysMonth = monthlyData.total_monthly_data;
+                if(nbDaysMonth==0){
+                    nbDaysMonth=1;
+                }
                 setCookie('total_monthly_data', nbDaysMonth);
                 //console.log("nbDaysMonth : " + nbDaysMonth);
-                if(nbDaysMonth!=0){
-                    let monthlyCalories = ((monthlyData.total_monthly_calories/nbDaysMonth) * 100 / metabolisme).toFixed(2);
-                    setCookie('monthlyCalories', monthlyCalories);
-                    let monthlySucres = (((monthlyData.total_monthly_sucres/nbDaysMonth) * 100 / metabolisme) * 10).toFixed(2);
-                    setCookie('monthlySucres', monthlySucres);
-                } else {
-                    setCookie('monthlyCalories', 0);
-                    setCookie('monthlySucres', 0);
-                }
+                let monthlyCalories = ((monthlyData.total_monthly_calories/nbDaysMonth) * 100 / metabolisme).toFixed(2);
+                setCookie('monthlyCalories', monthlyCalories);
+                let monthlySucres = (((monthlyData.total_monthly_sucres/nbDaysMonth) * 100 / metabolisme) * 10).toFixed(2);
+                setCookie('monthlySucres', monthlySucres);
+
                 let lip_prot_glu_monthly = (monthlyData.total_monthly_lipides*9) + (monthlyData.total_monthly_glucides*4) + (monthlyData.total_monthly_proteines*4);
-                
+
                 let monthlyLipides = ((monthlyData.total_monthly_lipides * 9 / lip_prot_glu_monthly)*100).toFixed(2);
                 setCookie('monthlyLipides', monthlyLipides);
                 let monthlyGlucides = ((monthlyData.total_monthly_glucides * 4 / lip_prot_glu_monthly)*100).toFixed(2);
                 setCookie('monthlyGlucides', monthlyGlucides);
                 let monthlyProteines = ((monthlyData.total_monthly_proteines * 4 / lip_prot_glu_monthly)*100).toFixed(2);
                 setCookie('monthlyProteines', monthlyProteines);
-                
+
             },
 
             error: function(error) {
