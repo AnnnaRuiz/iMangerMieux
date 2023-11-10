@@ -20,13 +20,13 @@
     }
 
     if(isset($_SESSION['mdp']) && isset($_SESSION['nom']) && isset($_SESSION['taille']) && isset($_SESSION['sexe']) && isset($_SESSION['poids']) && isset($_SESSION['age']) && isset($_SESSION['activite'])) {
-    $mdp = $_SESSION['mdp'];
-    $nom = $_SESSION['nom'];
-    $taille = $_SESSION['taille'];
-    $sexe = $_SESSION['sexe'];
-    $poids = $_SESSION['poids'];
-    $age = $_SESSION['age'];
-    $activite = $_SESSION['activite'];
+        $mdp = $_SESSION['mdp'];
+        $nom = $_SESSION['nom'];
+        $taille = $_SESSION['taille'];
+        $sexe = $_SESSION['sexe'];
+        $poids = $_SESSION['poids'];
+        $age = $_SESSION['age'];
+        $activite = $_SESSION['activite'];
     }
 
     if(isset($_POST['email']) && isset($_POST['pwd'])) {

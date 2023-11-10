@@ -106,7 +106,8 @@ function updateUserConnexionData($mail, $nom, $pwd){
     $request->bindParam(':mail', $mail, PDO::PARAM_STR);
     $request->execute();
 
-    return ['mail' => $mail];
+    return $request->rowCount() > 0 ? ["MAIL" => $mail, "NOM" => $nom, "MDP" => $pwd] : null; // Renvoie les données mises à jour ou null si aucune ligne mise à jour
+
 }
 
 function updateUserPersonalData($mail, $sexe, $age, $poids, $taille, $activite){
@@ -121,7 +122,8 @@ function updateUserPersonalData($mail, $sexe, $age, $poids, $taille, $activite){
     $request->bindParam(':mail', $mail, PDO::PARAM_STR);
     $request->execute();
 
-    return ['mail' => $mail];
+    return $request->rowCount() > 0 ? ["MAIL" => $mail, "AGE" => $age, "TAILLE" => $taille, "POIDS" => $poids, "ACTIVITE" => $activite, "SEXE" => $sexe] : null; // Renvoie les données mises à jour ou null si aucune ligne mise à jour
+
 }
 
 //pour repas.php :
@@ -202,7 +204,8 @@ function updateRepasItem($repas_id, $aliment, $quantite){
     $request->bindParam(':aliment', $aliment, PDO::PARAM_STR);
     $request->execute();
 
-    return ['REPAS_ID' => $repas_id];
+    return $request->rowCount() > 0 ? ["REPAS_ID" => $repas_id, "ALIMENT" => $aliment, "QUANTITE" => $quantite] : null;
+
 }
 
 //pour journal.php :

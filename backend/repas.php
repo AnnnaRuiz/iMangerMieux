@@ -4,7 +4,7 @@ require_once('functionsAPI.php');
 
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
-        $mail= $_SESSION['mail'];
+        $mail = $_SESSION['mail'];
         $result = getDailyRepas($mail);
         if($result!=null){
             header('Content-type: application/json');
@@ -83,7 +83,7 @@ switch($_SERVER["REQUEST_METHOD"]){
             }
             else {
                 http_response_code(404); // Code d'erreur 404 Not Found
-                exit(json_encode(["message" => "Aliment non trouve"]));
+                exit(json_encode(["message" => "Repas non trouve"]));
             }
         } else {
             http_response_code(400); // Code d'erreur 400 Bad Request

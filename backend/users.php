@@ -83,7 +83,7 @@ switch($_SERVER["REQUEST_METHOD"]){
             http_response_code(200); // Code 200 OK
             header('Content-Type: application/json');
             exit(json_encode($updatedUserCo));
-            
+
         } else {
             http_response_code(400); // Code d'erreur 400 Bad Request
             exit(json_encode(["message" => "Parametres invalides pour la mise a jour des données de l'utilisateur"]));
