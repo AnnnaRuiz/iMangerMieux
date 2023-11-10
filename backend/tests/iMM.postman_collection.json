@@ -1,0 +1,577 @@
+{
+	"info": {
+		"_postman_id": "a4de942d-49df-40bc-933f-12776a9ba00a",
+		"name": "iMM",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30554127"
+	},
+	"item": [
+		{
+			"name": "accueil.php",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/accueil.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"accueil.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aliments.php",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/aliments.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"aliments.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aliments.php",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ALIMENT",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "CATEGORIE",
+							"value": "Fruits et légumes",
+							"type": "text"
+						},
+						{
+							"key": "CALORIES",
+							"value": "41",
+							"type": "text"
+						},
+						{
+							"key": "LIPIDES",
+							"value": "0.2",
+							"type": "text"
+						},
+						{
+							"key": "GLUCIDES",
+							"value": "10",
+							"type": "text"
+						},
+						{
+							"key": "PROTEINES",
+							"value": "0.9",
+							"type": "text"
+						},
+						{
+							"key": "SUCRE",
+							"value": "4.7",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/aliments.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"aliments.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aliments.php",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ALIMENT",
+							"value": "test",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/aliments.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"aliments.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "aliments.php",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "ALIMENT",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "CALORIES",
+							"value": "10000",
+							"type": "text"
+						},
+						{
+							"key": "CATEGORIE",
+							"value": "Fruits et Légumes",
+							"type": "text"
+						},
+						{
+							"key": "LIPIDES",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "GLUCIDES",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "PROTEINES",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "SUCRE",
+							"value": "100000",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/aliments.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"aliments.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "journal.php",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/journal.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"journal.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "repas.php",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": []
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/repas.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"repas.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "repas.php",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "REPAS_ID",
+							"value": "NULL",
+							"type": "text"
+						},
+						{
+							"key": "TYPE_REPAS",
+							"value": "Déjeuner",
+							"type": "text"
+						},
+						{
+							"key": "ALIMENT",
+							"value": "Pomme",
+							"type": "text"
+						},
+						{
+							"key": "QUANTITE",
+							"value": "150",
+							"type": "text"
+						},
+						{
+							"key": "DATE",
+							"value": "2023-11-10",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/repas.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"repas.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "repas.php",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "REPAS_ID",
+							"value": "24",
+							"type": "text"
+						},
+						{
+							"key": "ALIMENT",
+							"value": "Pomme",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/repas.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"repas.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "repas.php",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "REPAS_ID",
+							"value": "16",
+							"type": "text"
+						},
+						{
+							"key": "ALIMENT",
+							"value": "Banane",
+							"type": "text"
+						},
+						{
+							"key": "QUANTITE",
+							"value": "100",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/repas.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"repas.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users.php READ CONNECTED USER",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "fifi@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "pwd",
+							"value": "riri",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/users.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"users.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users.php CREATE",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "NOM",
+							"value": "test",
+							"type": "text"
+						},
+						{
+							"key": "MAIL",
+							"value": "test@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "MDP",
+							"value": "mdp",
+							"type": "text"
+						},
+						{
+							"key": "TAILLE",
+							"value": "160",
+							"type": "text"
+						},
+						{
+							"key": "POIDS",
+							"value": "55",
+							"type": "text"
+						},
+						{
+							"key": "AGE",
+							"value": "22",
+							"type": "text"
+						},
+						{
+							"key": "ACTIVITE",
+							"value": "Actif",
+							"type": "text"
+						},
+						{
+							"key": "SEXE",
+							"value": "F",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/users.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"users.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users.php CONNEXION DATA",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "NOM",
+							"value": "Fifi4",
+							"type": "text"
+						},
+						{
+							"key": "MDP",
+							"value": "riri",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/users.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"users.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "users.php PERSONAL INFO",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "TAILLE",
+							"value": "170",
+							"type": "text"
+						},
+						{
+							"key": "POIDS",
+							"value": "60",
+							"type": "text"
+						},
+						{
+							"key": "SEXE",
+							"value": "M",
+							"type": "text"
+						},
+						{
+							"key": "ACTIVITE",
+							"value": "Très actif",
+							"type": "text"
+						},
+						{
+							"key": "AGE",
+							"value": "23",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8888/iMangerMieux/backend/users.php",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8888",
+					"path": [
+						"iMangerMieux",
+						"backend",
+						"users.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
