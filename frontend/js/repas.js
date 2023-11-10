@@ -155,7 +155,7 @@ function deleteRepas(button) {
                 row.find('td:eq(3)').text(aliment);
                 row.find('td:eq(4)').text(quantite);
                 row.find('td:eq(5)').html(`<button type="button" class="btn btn-primary" onclick="modifyRepas(this)">Modify</button><button type="button" class="btn btn-danger" onclick="deleteRepas(this)">Delete</button>`);
-                    },
+            },
             error: function(error) {
                 console.error(error);
             }

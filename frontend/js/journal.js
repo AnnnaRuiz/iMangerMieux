@@ -132,7 +132,3 @@ function getCookie(name) {
     }
     return null;
 }
-
-function reloadPage() {
-    location.reload();
-}

@@ -181,3 +181,8 @@ function deleteRow(button) {
             }
         });
     }
+
+
+    function reloadPage() {
+        location.reload();
+    }
