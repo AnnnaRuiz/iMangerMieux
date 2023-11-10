@@ -70,6 +70,23 @@ $(document).ready(function() {
             }
         });
     });
+
+    var aliments;
+    $.ajax({
+        type: 'POST',
+        url: apiURL + '/repas.php',
+        data: {},
+        success: function(response) {
+            var aliments = response.map(function(item) {
+                return item.ALIMENT;
+            });
+            autocomplete(document.getElementById("inputAliment"), aliments);
+        },
+
+        error: function(error) {
+            console.error(error);
+        }
+    });
 })
 
 function deleteRepas(button) {
@@ -144,22 +161,11 @@ function deleteRepas(button) {
         });
     }
 
-    var aliments;
-    $.ajax({
-        type: 'POST',
-        url: apiURL + '/repas.php',
-        data: {},
-        success: function(response) {
-            var aliments = response.map(function(item) {
-                return item.ALIMENT;
-            });
-            autocomplete(document.getElementById("inputAliment"), aliments);
-        },
+    function getIdRepas() {
+        let id = $('#repas tbody tr:first-child td:first-child').text();
+        return id;
+    }
 
-        error: function(error) {
-            console.error(error);
-        }
-    });
     function autocomplete(inp, arr) {
         /*the autocomplete function takes two arguments,
         the text field element and an array of possible autocompleted values:*/
@@ -258,7 +264,6 @@ function deleteRepas(button) {
     }
 
 
-    function getIdRepas() {
-        let id = $('#repas tbody tr:first-child td:first-child').text();
-        return id;
-    }
+
+
+    

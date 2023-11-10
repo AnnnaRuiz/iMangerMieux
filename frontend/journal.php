@@ -64,7 +64,7 @@ foreach ($periodTypes as $periodType => $periodName) {
     $glucides = $_COOKIE[$periodType . 'Glucides'];
     $proteines = $_COOKIE[$periodType . 'Proteines'];
     $metabolisme = $_COOKIE['metabolisme'];
-    if(isset($_COOKIE['total_' . $periodType . '_data'])){
+    if(isset($_COOKIE['total_' . $periodType . '_data']) && $_COOKIE['total_' . $periodType . '_data']!=0){
         $nbJours = $_COOKIE['total_' . $periodType . '_data'];
     }else{
         $nbJours = 1;
