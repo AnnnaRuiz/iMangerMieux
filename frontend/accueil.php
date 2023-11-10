@@ -67,7 +67,7 @@ $qteSucreRecommande = ($metabolisme * 10) / 400 ;
 
     <div class="col-3 border border-dark rounded bg-light text-center mx-5">
         <h3><i class="fas fa-apple-alt" style="color: #2DCD9D;"></i> Fruits et légumes consommés ce jour : <?php echo $nbFruitsLegs?>/5</h3>
-        <p> d'après les reommendations du Programme National Nutrition Santé (PNNS) <p>
+        <p> d'après les recommendations du Programme National Nutrition Santé (PNNS) <p>
     </div> 
 </div class="row">
 
