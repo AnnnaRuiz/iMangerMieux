@@ -105,6 +105,7 @@ function deleteRepas(button) {
             let table = $('#repas').DataTable();
             table.row(row).remove().draw();
 
+            location.reload();
         },
         error: function(error) {
             console.error(error);

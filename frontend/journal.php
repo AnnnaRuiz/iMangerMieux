@@ -58,20 +58,30 @@ function generateStatistics($periodType, $title, $calories, $sucres, $lipides, $
 
 foreach ($periodTypes as $periodType => $periodName) {
     // Utilisez les variables correspondantes pour chaque type de statistique
-    $calories = $_COOKIE[$periodType . 'Calories'];
-    $sucres = $_COOKIE[$periodType . 'Sucres'];
-    $lipides = $_COOKIE[$periodType . 'Lipides'];
-    $glucides = $_COOKIE[$periodType . 'Glucides'];
-    $proteines = $_COOKIE[$periodType . 'Proteines'];
-    $metabolisme = $_COOKIE['metabolisme'];
-    if(isset($_COOKIE['total_' . $periodType . '_data']) && $_COOKIE['total_' . $periodType . '_data']!=0){
+    $calories = isset($_COOKIE[$periodType . 'Calories']) ? $_COOKIE[$periodType . 'Calories'] : null;
+    $sucres = isset($_COOKIE[$periodType . 'Sucres']) ? $_COOKIE[$periodType . 'Sucres'] : null;
+    $lipides = isset($_COOKIE[$periodType . 'Lipides']) ? $_COOKIE[$periodType . 'Lipides'] : null;
+    $glucides = isset($_COOKIE[$periodType . 'Glucides']) ? $_COOKIE[$periodType . 'Glucides'] : null;
+    $proteines = isset($_COOKIE[$periodType . 'Proteines']) ? $_COOKIE[$periodType . 'Proteines'] : null;
+    $metabolisme = isset($_COOKIE['metabolisme']) ? $_COOKIE['metabolisme'] : null;
+
+    if (isset($_COOKIE['total_' . $periodType . '_data']) && $_COOKIE['total_' . $periodType . '_data'] != 0) {
         $nbJours = $_COOKIE['total_' . $periodType . '_data'];
-    }else{
+    } else {
         $nbJours = 1;
     }
+
+    // Mettre à zéro les valeurs si elles sont nulles
+    $calories = ($calories !== null) ? $calories : 0;
+    $sucres = ($sucres !== null) ? $sucres : 0;
+    $lipides = ($lipides !== null) ? $lipides : 0;
+    $glucides = ($glucides !== null) ? $glucides : 0;
+    $proteines = ($proteines !== null) ? $proteines : 0;
+
     $metabolisme = $metabolisme * $nbJours;
-    
+
     generateStatistics($periodType, $statTypes[$periodType], $calories, $sucres, $lipides, $glucides, $proteines, $metabolisme);
 }
+
 
 ?>
