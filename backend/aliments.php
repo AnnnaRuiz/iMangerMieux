@@ -4,9 +4,14 @@ require_once('functionsAPI.php');
 switch($_SERVER["REQUEST_METHOD"]){
     case 'GET':
         $result = getAllFood();
-        header('Content-type: application/json');
-        http_response_code(200);
-        exit(json_encode($result));
+        if($result!=null){
+            header('Content-type: application/json');
+            http_response_code(200);
+            exit(json_encode($result));
+        } else {
+            http_response_code(404); // Code d'erreur 404 Not Found 
+            exit( json_encode(["message" => "Aliments introuvables"]));
+        }
 
     case 'POST':
         $name = $_POST['ALIMENT'];

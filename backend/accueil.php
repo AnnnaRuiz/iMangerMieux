@@ -8,9 +8,15 @@ switch($_SERVER["REQUEST_METHOD"]){
     
     case 'GET':
         $result = numberFruitsVegsThisDay($mail, $date);
-        header('Content-type: application/json');
+        if($result!=null){
+            header('Content-type: application/json');
         http_response_code(200);
         exit(json_encode(["fruitsLegs" => $result]));
+        } else {
+            http_response_code(404); // Code d'erreur 404 Not Found 
+            exit( json_encode(["message" => "Nombre de fruit et légume introuvable"]));
+        }
+        
 
 
     default : 
